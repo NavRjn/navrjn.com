@@ -6,18 +6,33 @@ import Layout from "../layouts/Layout.astro";
   title="NAVEEN RAJAN"
   description="Engineer, builder, and researcher working at the intersection of AI, software, and startups."
 >
+
   <section class="hero">
     <p class="eyebrow">ENGINEER · FOUNDER · RESEARCHER</p>
 
-    <h1>
-      Building things<br />
-      with <span>AI.</span>
-    </h1>
 
-    <p class="intro">
-      I build software, study intelligent systems, and write about
-      what I learn along the way.
-    </p>
+    <section class="hero-title">
+      <div class="hero-content">
+        <h1>
+          Building things<br />
+          with <span>AI.</span>
+        </h1>
+
+        <p class="intro">
+          I build software, study intelligent systems, and write about
+          what I learn along the way.
+        </p>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="/images/me-1.jpg"
+          alt="Naveen Rajan"
+          class="portrait"
+        />
+      </div>
+    </section>
+
 
     <div class="links">
       <a href="/projects">View projects →</a>
@@ -121,10 +136,46 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-  .hero {
-    padding: 120px 0 100px;
-    max-width: 760px;
+  .hero-title {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    min-height: 80vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
   }
+
+  .hero-content {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+  }
+
+
+  .intro {
+    max-width: 500px;
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .hero-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .portrait {
+    display: block;
+    width: 100%;
+    height: min(75vh, 750px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+
 
   .eyebrow,
   .section-label,
