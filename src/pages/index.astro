@@ -1,56 +1,291 @@
 ---
-const name = "Naveen Rajan Selvaraj Kannammal";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta
-      name="description"
-      content={`${name} — engineer, builder, and AI researcher.`}
-    />
-    <title>{name}</title>
-  </head>
+<Layout
+  title="NAVEEN RAJAN"
+  description="Engineer, builder, and researcher working at the intersection of AI, software, and startups."
+>
+  <section class="hero">
+    <p class="eyebrow">ENGINEER · FOUNDER · RESEARCHER</p>
 
-  <body>
-    <main>
-      <h1>{name}</h1>
+    <h1>
+      Building things<br />
+      with <span>AI.</span>
+    </h1>
 
-      <p>Engineer / Builder</p>
+    <p class="intro">
+      I build software, study intelligent systems, and write about
+      what I learn along the way.
+    </p>
 
-      <p>
-        I build things with AI and software.
-      </p>
+    <div class="links">
+      <a href="/projects">View projects →</a>
+      <a href="/writing">Read my writing →</a>
+    </div>
+  </section>
 
-      <nav>
-        <a href="/projects">Projects</a>
-        <a href="/writing">Writing</a>
-        <a href="/about">About</a>
-        <a href="/now">Now</a>
-        <a href="https://github.com/navrjn">GitHub</a>
-      </nav>
-    </main>
-  </body>
-</html>
+  <section class="now">
+    <div class="section-label">NOW</div>
+
+    <div class="now-grid">
+      <div>
+        <h3>Building</h3>
+        <p>Something interesting.</p>
+      </div>
+
+      <div>
+        <h3>Learning</h3>
+        <p>AI systems, agents, and whatever catches my attention.</p>
+      </div>
+
+      <div>
+        <h3>Thinking about</h3>
+        <p>Technology, startups, and how to build useful things.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <span>SELECTED WORK</span>
+      <a href="/projects">View all →</a>
+    </div>
+
+    <div class="projects">
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project One</h2>
+          <p>
+            A short description of something you've built.
+          </p>
+        </div>
+
+        <span>2026</span>
+      </a>
+
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project Two</h2>
+          <p>
+            Another interesting thing you've worked on.
+          </p>
+        </div>
+
+        <span>2026</span>
+      </a>
+
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project Three</h2>
+          <p>
+            Research, experiment, or open-source project.
+          </p>
+        </div>
+
+        <span>2025</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <span>WRITING</span>
+      <a href="/writing">View all →</a>
+    </div>
+
+    <div class="writing">
+      <a href="/writing" class="article">
+        <span class="date">SEP 2026</span>
+
+        <div>
+          <h2>The things I'm learning about AI</h2>
+          <p>Notes from building and studying intelligent systems.</p>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+
+      <a href="/writing" class="article">
+        <span class="date">AUG 2026</span>
+
+        <div>
+          <h2>Building software in the age of AI</h2>
+          <p>Thoughts on engineering, tools, and the future.</p>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </section>
+</Layout>
 
 <style>
-  body {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 48px 24px;
-    font-family: system-ui, sans-serif;
+  .hero {
+    padding: 120px 0 100px;
+    max-width: 760px;
+  }
+
+  .eyebrow,
+  .section-label,
+  .section-heading {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  h1 {
+    margin: 20px 0;
+    font-size: clamp(52px, 8vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    font-weight: 650;
+  }
+
+  h1 span {
+    color: #777;
+  }
+
+  .intro {
+    max-width: 570px;
+    color: #999;
+    font-size: 19px;
     line-height: 1.6;
   }
 
-  nav {
+  .links {
     display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    gap: 24px;
     margin-top: 32px;
+    font-size: 15px;
   }
 
-  a {
-    color: inherit;
+  .links a {
+    color: #ddd;
+  }
+
+  .links a:hover {
+    color: white;
+  }
+
+  section {
+    margin-bottom: 110px;
+  }
+
+  .now {
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 28px 0;
+  }
+
+  .now-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 25px;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 0 0 6px;
+    color: #ddd;
+  }
+
+  .now p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+    padding-bottom: 14px;
+  }
+
+  .section-heading a {
+    color: #666;
+    letter-spacing: normal;
+  }
+
+  .section-heading a:hover {
+    color: #fff;
+  }
+
+  .project {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid #222;
+    transition: padding 0.2s ease;
+  }
+
+  .project:hover {
+    padding-left: 10px;
+  }
+
+  .project h2,
+  .article h2 {
+    margin: 0;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .project p,
+  .article p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+  }
+
+  .project > span {
+    color: #555;
+    font-size: 13px;
+  }
+
+  .article {
+    display: grid;
+    grid-template-columns: 100px 1fr 30px;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .date {
+    color: #555;
+    font-size: 12px;
+  }
+
+  .arrow {
+    color: #555;
+    transition: transform 0.2s ease;
+  }
+
+  .article:hover .arrow {
+    transform: translate(3px, -3px);
+    color: white;
+  }
+
+  @media (max-width: 650px) {
+    .hero {
+      padding: 80px 0;
+    }
+
+    .now-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .article {
+      grid-template-columns: 1fr 25px;
+    }
+
+    .date {
+      display: none;
+    }
   }
 </style>

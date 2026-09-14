@@ -1,19 +1,104 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>About — Naveen Rajan</title>
-  </head>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-  <body>
-    <main>
-      <p><a href="/">← Home</a></p>
+<Layout
+  title="About"
+  description="About Naveen Rajan — engineer, founder, and researcher."
+>
+  <div class="page">
+    <p class="eyebrow">ABOUT</p>
 
-      <h1>About</h1>
+    <h1>A little about me.</h1>
+
+    <div class="content">
+      <p>
+        I'm an engineer interested in artificial intelligence,
+        software, and building things that are actually useful.
+      </p>
 
       <p>
-        I'm an engineer interested in AI, software, and building things.
+        My interests sit somewhere between engineering, research,
+        and entrepreneurship. I'm particularly interested in what
+        happens when new technology makes previously impractical
+        ideas possible.
       </p>
-    </main>
-  </body>
-</html>
+
+      <p>
+        This website is where I keep track of things I'm building,
+        researching, learning, and writing about.
+      </p>
+
+      <h2>Interests</h2>
+
+      <ul>
+        <li>Artificial intelligence</li>
+        <li>Software engineering</li>
+        <li>AI systems and infrastructure</li>
+        <li>Startups and technology</li>
+        <li>Open source</li>
+      </ul>
+
+      <h2>Elsewhere</h2>
+
+      <p>
+        <a href="https://github.com/navrjn">GitHub ↗</a><br />
+        <a href="https://linkedin.com/in/navrjn">LinkedIn ↗</a><br />
+        <a href="mailto:hello@navrjn.com">Email ↗</a>
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding: 90px 0;
+    max-width: 700px;
+  }
+
+  .eyebrow {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(42px, 7vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin: 20px 0 60px;
+  }
+
+  .content {
+    color: #999;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .content p {
+    margin: 0 0 28px;
+  }
+
+  h2 {
+    color: #ddd;
+    font-size: 18px;
+    margin: 60px 0 20px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 8px 0;
+  }
+
+  a {
+    color: #ddd;
+  }
+
+  a:hover {
+    color: white;
+  }
+</style>

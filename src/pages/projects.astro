@@ -1,19 +1,150 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Projects</title>
-  </head>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-  <body>
-    <main>
-      <p><a href="/">← Home</a></p>
+<Layout
+  title="Projects"
+  description="Projects, experiments, and things I've built."
+>
+  <div class="page">
+    <p class="eyebrow">PROJECTS</p>
 
-      <h1>Selected Highlights</h1>
+    <h1>Things I've built.</h1>
 
-      <p>
-        Coming soon!
-      </p>
-    </main>
-  </body>
-</html>
+    <p class="intro">
+      A collection of software, experiments, and ideas I've worked on.
+    </p>
+
+    <div class="projects">
+      <a class="project" href="#">
+        <div>
+          <span class="number">01</span>
+          <h2>Project Name</h2>
+          <p>
+            A concise description of what this project does and why
+            it exists.
+          </p>
+          <div class="tags">
+            <span>AI</span>
+            <span>Python</span>
+            <span>Systems</span>
+          </div>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="project" href="#">
+        <div>
+          <span class="number">02</span>
+          <h2>Another Project</h2>
+          <p>
+            Something else you've built, researched, or experimented with.
+          </p>
+          <div class="tags">
+            <span>Research</span>
+            <span>LLMs</span>
+          </div>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="project" href="#">
+        <div>
+          <span class="number">03</span>
+          <h2>Open Source / Experiment</h2>
+          <p>
+            A project worth documenting even if it never became a product.
+          </p>
+          <div class="tags">
+            <span>Open Source</span>
+            <span>Engineering</span>
+          </div>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding: 90px 0;
+  }
+
+  .eyebrow {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(42px, 7vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin: 20px 0;
+  }
+
+  .intro {
+    color: #777;
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 70px;
+  }
+
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    gap: 30px;
+    padding: 36px 0;
+    border-top: 1px solid #222;
+    transition: padding 0.2s ease;
+  }
+
+  .project:last-child {
+    border-bottom: 1px solid #222;
+  }
+
+  .project:hover {
+    padding-left: 12px;
+  }
+
+  .number {
+    color: #444;
+    font-size: 12px;
+  }
+
+  h2 {
+    margin: 6px 0;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+  }
+
+  .project p {
+    color: #777;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .tags span {
+    border: 1px solid #292929;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #666;
+    font-size: 11px;
+  }
+
+  .arrow {
+    color: #555;
+  }
+</style>

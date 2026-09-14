@@ -1,19 +1,131 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Writings</title>
-  </head>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-  <body>
-    <main>
-      <p><a href="/">← Home</a></p>
+<Layout
+  title="Writing"
+  description="Writing about AI, software, engineering, research, and technology."
+>
+  <div class="page">
+    <p class="eyebrow">WRITING</p>
 
-      <h1>Writings</h1>
+    <h1>Things I've been thinking about.</h1>
 
-      <p>
-        Coming soon!
-      </p>
-    </main>
-  </body>
-</html>
+    <p class="intro">
+      Technical writing, research notes, experiments, and occasional
+      thoughts about technology.
+    </p>
+
+    <div class="articles">
+      <a href="#" class="article">
+        <span class="date">SEP 2026</span>
+
+        <div>
+          <h2>Understanding modern AI systems</h2>
+          <p>
+            Notes from studying and building with today's AI models.
+          </p>
+        </div>
+
+        <span>↗</span>
+      </a>
+
+      <a href="#" class="article">
+        <span class="date">AUG 2026</span>
+
+        <div>
+          <h2>Building software with AI</h2>
+          <p>
+            What changes when AI becomes part of the engineering workflow?
+          </p>
+        </div>
+
+        <span>↗</span>
+      </a>
+
+      <a href="#" class="article">
+        <span class="date">JUL 2026</span>
+
+        <div>
+          <h2>Notes on building things</h2>
+          <p>
+            A collection of observations from recent projects.
+          </p>
+        </div>
+
+        <span>↗</span>
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding: 90px 0;
+  }
+
+  .eyebrow {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  h1 {
+    max-width: 700px;
+    font-size: clamp(42px, 7vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin: 20px 0;
+  }
+
+  .intro {
+    color: #777;
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 70px;
+  }
+
+  .article {
+    display: grid;
+    grid-template-columns: 100px 1fr 30px;
+    gap: 20px;
+    padding: 30px 0;
+    border-top: 1px solid #222;
+  }
+
+  .article:last-child {
+    border-bottom: 1px solid #222;
+  }
+
+  .date {
+    color: #555;
+    font-size: 11px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .article p {
+    color: #777;
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+
+  .article > span:last-child {
+    color: #555;
+  }
+
+  @media (max-width: 600px) {
+    .article {
+      grid-template-columns: 1fr 25px;
+    }
+
+    .date {
+      display: none;
+    }
+  }
+</style>
