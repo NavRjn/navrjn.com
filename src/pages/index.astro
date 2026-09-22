@@ -3,145 +3,340 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-title="Naveen Rajan — You saw me on DHDL"
-description="You saw the window-cleaning drone on Die Höhle Der Löwen. Follow the technical story behind what we built, what went wrong, and what comes next."
+  title="NAVEEN RAJAN"
+  description="Engineer, builder, and researcher working at the intersection of AI, software, and startups."
 >
 
-<main> <section class="hero"> <div class="hero-content"> <p class="eyebrow">NAVEEN RAJAN · ENGINEER & FOUNDER</p>
-    <h1>
-      You saw the drone<br />
-      <span>fail on DHDL.</span>
-    </h1>
+  <section class="hero">
+    <p class="eyebrow">ENGINEER · FOUNDER · RESEARCHER</p>
 
-    <p class="intro">
-      Here's what you didn't see.
-    </p>
 
-    <p class="body">
-      I'm the engineer behind Clearbee.
-    </p>
+    <section class="hero-title">
+      <div class="hero-content">
+        <h1>
+          Building things<br />
+          with <span>AI.</span>
+        </h1>
 
-    <p class="body">
-      The demo didn't go the way we wanted. But getting a robot to
-      autonomously clean windows is an unsurprisingly hard engineering
-      problem; the technology behind is more interesting.
-    </p>
+        <p class="intro">
+          I build software, study intelligent systems, and write about
+          what I learn along the way.
+        </p>
+      </div>
 
-    <p class="body">
-      I'm documenting what we built, what broke, what we learned, and
-      what comes next.
-    </p>
+      <div class="hero-image">
+        <img
+          src="/images/me-1.jpg"
+          alt="Naveen Rajan"
+          class="portrait"
+        />
+      </div>
+    </section>
 
-    <a
-      href="https://navrjn.substack.com/subscribe"
-      class="cta"
-      target="_blank"
-      rel="noopener"
-    >
-      Follow the story <span>→</span>
-    </a>
 
-  </div>
+    <div class="links">
+      <a href="/projects">View projects →</a>
+      <a href="/writing">Read my writing →</a>
+    </div>
+  </section>
 
-  <div class="hero-image">
-    <img
-      src="/images/me-1.jpg"
-      alt="Naveen Rajan"
-      class="portrait"
-    />
-  </div>
-</section>
+  <section class="now">
+    <div class="section-label">NOW</div>
 
-<section class="what-youll-get">
-  <div class="section-label">WHAT I'LL SHARE</div>
+    <div class="now-grid">
+      <div>
+        <h3>Building</h3>
+        <p>Something interesting.</p>
+      </div>
 
-  <div class="topics">
-    <div class="topic">
-      <span>01</span>
-      <p>How 300g drone actually navigates without many sensors</p>
+      <div>
+        <h3>Learning</h3>
+        <p>AI systems, agents, and whatever catches my attention.</p>
+      </div>
+
+      <div>
+        <h3>Thinking about</h3>
+        <p>Technology, startups, and how to build useful things.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <span>SELECTED WORK</span>
+      <a href="/projects">View all →</a>
     </div>
 
-    <div class="topic">
-      <span>02</span>
-      <p>Why the Shark Tank demo failed</p>
+    <div class="projects">
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project One</h2>
+          <p>
+            A short description of something you've built.
+          </p>
+        </div>
+
+        <span>2026</span>
+      </a>
+
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project Two</h2>
+          <p>
+            Another interesting thing you've worked on.
+          </p>
+        </div>
+
+        <span>2026</span>
+      </a>
+
+      <a href="/projects" class="project">
+        <div>
+          <h2>Project Three</h2>
+          <p>
+            Research, experiment, or open-source project.
+          </p>
+        </div>
+
+        <span>2025</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <span>WRITING</span>
+      <a href="/writing">View all →</a>
     </div>
 
-    <div class="topic">
-      <span>03</span>
-      <p>The engineering problems we ran into</p>
+    <div class="writing">
+      <a href="/writing" class="article">
+        <span class="date">SEP 2026</span>
+
+        <div>
+          <h2>The things I'm learning about AI</h2>
+          <p>Notes from building and studying intelligent systems.</p>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
+
+      <a href="/writing" class="article">
+        <span class="date">AUG 2026</span>
+
+        <div>
+          <h2>Building software in the age of AI</h2>
+          <p>Thoughts on engineering, tools, and the future.</p>
+        </div>
+
+        <span class="arrow">↗</span>
+      </a>
     </div>
+  </section>
+</Layout>
 
-    <div class="topic">
-      <span>04</span>
-      <p>What we learned - and what we're building next</p>
-    </div>
-  </div>
-</section>
+<style>
+  .hero-title {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    min-height: 80vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
 
-<section class="newsletter" id="newsletter">
-  <div class="section-label">FOLLOW THE BUILD</div>
+  .hero-content {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-  <div class="newsletter-content">
-    <h2>
-      Get the story<br />
-      <span>behind the scenes.</span>
-    </h2>
-
-    <p>
-      Occasional emails about the technology, experiments, failures,
-      and whatever comes next.
-    </p>
-
-    <a
-      href="https://navrjn.substack.com/subscribe"
-      class="subscribe-button"
-      target="_blank"
-      rel="noopener"
-    >
-      Subscribe to the newsletter <span>→</span>
-    </a>
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+  }
 
 
-    <small>No spam. Just the interesting stuff.</small>
-  </div>
-</section>
+  .intro {
+    max-width: 500px;
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
 
-<footer>
-  <span>NAVEEN RAJAN</span>
+  .hero-image {
+    position: relative;
+    z-index: 1;
+  }
 
-  <div class="footer-links">
-    <a href="https://github.com/navrjn" target="_blank" rel="noopener">
-      GitHub
-    </a>
-    <a href="#" target="_blank" rel="noopener">
-      LinkedIn
-    </a>
-    <a href="mailto:hello@navrjn.com">
-      Email
-    </a>
-  </div>
-</footer>
+  .portrait {
+    display: block;
+    width: 100%;
+    height: min(75vh, 500px);
+    object-fit: cover;
+    object-position: center;
+  }
 
-</main> </Layout>
-<style> main { max-width: 1200px; margin: 0 auto; } .hero { min-height: 82vh; display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 70px; padding: 70px 40px 100px; } .eyebrow, .section-label { color: #666; font-size: 11px; letter-spacing: 0.14em; font-weight: 600; } h1 { margin: 28px 0 24px; font-size: clamp(48px, 6vw, 78px); line-height: 0.98; letter-spacing: -0.055em; font-weight: 650; } h1 span { color: #777; } .intro { margin: 0 0 24px; color: #ddd; font-size: 24px; letter-spacing: -0.02em; } .body { max-width: 570px; margin: 0 0 16px; color: #999; font-size: 16px; line-height: 1.65; } .hero-image { position: relative; } .portrait { display: block; width: 100%; height: min(70vh, 680px); object-fit: cover; object-position: center; } .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 14px 20px; background: #fff; color: #000; font-size: 14px; font-weight: 600; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease; } .cta:hover { transform: translateY(-2px); background: #ddd; } .cta span { font-size: 17px; } .what-youll-get { border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 32px 40px 45px; } .topics { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 35px; } .topic { display: flex; gap: 25px; padding: 25px 20px 25px 0; border-top: 1px solid #222; } .topic span { color: #555; font-size: 12px; } .topic p { max-width: 380px; margin: 0; color: #ccc; font-size: 16px; line-height: 1.45; } .subscribe-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 20px;
-  background: #fff;
-  color: #000;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
 
-.subscribe-button:hover {
-  transform: translateY(-2px);
-  background: #ddd;
-}
 
-.subscribe-button span {
-  font-size: 17px;
-}
-.newsletter { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; padding: 120px 40px; } .newsletter-content h2 { margin: 0 0 25px; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.05em; } .newsletter-content h2 span { color: #777; } .newsletter-content > p { max-width: 520px; margin: 0 0 28px; color: #888; font-size: 16px; line-height: 1.6; } .signup-form { display: flex; max-width: 560px; } .signup-form input { flex: 1; min-width: 0; padding: 16px 18px; border: 1px solid #333; border-right: 0; outline: none; background: #111; color: #fff; font: inherit; } .signup-form input::placeholder { color: #555; } .signup-form input:focus { border-color: #666; } .signup-form button { padding: 16px 20px; border: 0; background: #fff; color: #000; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; } .signup-form button:hover { background: #ddd; } .signup-form button span { margin-left: 6px; } .newsletter-content small { display: block; margin-top: 12px; color: #555; font-size: 12px; } footer { display: flex; justify-content: space-between; padding: 30px 40px 50px; border-top: 1px solid #222; color: #555; font-size: 11px; letter-spacing: 0.12em; } .footer-links { display: flex; gap: 24px; } .footer-links a { color: #666; letter-spacing: normal; text-decoration: none; } .footer-links a:hover { color: #fff; } @media (max-width: 750px) { .hero { grid-template-columns: 1fr; gap: 45px; min-height: auto; padding: 60px 24px 80px; } .hero-image { order: -1; } .portrait { height: 55vh; max-height: 500px; } h1 { font-size: clamp(44px, 13vw, 64px); } .what-youll-get { padding: 28px 24px 35px; } .topics { grid-template-columns: 1fr; } .topic { padding-right: 0; } .newsletter { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; } .signup-form { flex-direction: column; } .signup-form input { border-right: 1px solid #333; border-bottom: 0; } .signup-form button { padding: 15px; } footer { padding: 25px 24px 40px; gap: 20px; flex-direction: column; } .footer-links { gap: 18px; } } </style>
+  .eyebrow,
+  .section-label,
+  .section-heading {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  h1 {
+    margin: 20px 0;
+    font-size: clamp(52px, 8vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    font-weight: 650;
+  }
+
+  h1 span {
+    color: #777;
+  }
+
+  .intro {
+    max-width: 570px;
+    color: #999;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    font-size: 15px;
+  }
+
+  .links a {
+    color: #ddd;
+  }
+
+  .links a:hover {
+    color: white;
+  }
+
+  section {
+    margin-bottom: 110px;
+  }
+
+  .now {
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 28px 0;
+  }
+
+  .now-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 25px;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 0 0 6px;
+    color: #ddd;
+  }
+
+  .now p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+    padding-bottom: 14px;
+  }
+
+  .section-heading a {
+    color: #666;
+    letter-spacing: normal;
+  }
+
+  .section-heading a:hover {
+    color: #fff;
+  }
+
+  .project {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid #222;
+    transition: padding 0.2s ease;
+  }
+
+  .project:hover {
+    padding-left: 10px;
+  }
+
+  .project h2,
+  .article h2 {
+    margin: 0;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .project p,
+  .article p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+  }
+
+  .project > span {
+    color: #555;
+    font-size: 13px;
+  }
+
+  .article {
+    display: grid;
+    grid-template-columns: 100px 1fr 30px;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .date {
+    color: #555;
+    font-size: 12px;
+  }
+
+  .arrow {
+    color: #555;
+    transition: transform 0.2s ease;
+  }
+
+  .article:hover .arrow {
+    transform: translate(3px, -3px);
+    color: white;
+  }
+
+  @media (max-width: 650px) {
+    .hero {
+      padding: 80px 0;
+    }
+
+    .now-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .article {
+      grid-template-columns: 1fr 25px;
+    }
+
+    .date {
+      display: none;
+    }
+  }
+</style>
