@@ -1,342 +1,1005 @@
+
 ---
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="NAVEEN RAJAN"
-  description="Engineer, builder, and researcher working at the intersection of AI, software, and startups."
+  title="Applied AI & Robotics Systems Engineer"
+  description="Naveen Rajan builds computer vision, edge ML, and autonomous robotics systems, and develops reproducible scientific machine learning tools."
 >
-
   <section class="hero">
-    <p class="eyebrow">ENGINEER · FOUNDER · RESEARCHER</p>
+    <div class="hero-eyebrow">
+      <span class="status-dot"></span>
+      <span>COMPUTER VISION</span>
+      <span class="eyebrow-separator">/</span>
+      <span>EDGE ML</span>
+      <span class="eyebrow-separator">/</span>
+      <span>SCIENTIFIC ML</span>
+    </div>
 
-
-    <section class="hero-title">
+    <div class="hero-stage">
       <div class="hero-content">
+        <p class="hero-kicker">ENGINEERING INTELLIGENT SYSTEMS</p>
+
         <h1>
-          Building things<br />
-          with <span>AI.</span>
+          Applied AI &amp;
+          <span>Systems Engineer</span>
         </h1>
 
         <p class="intro">
-          I build software, study intelligent systems, and write about
-          what I learn along the way.
+          I build perception and autonomy systems that work under real-world
+          constraints — combining computer vision, edge ML, and reliable
+          real-time software.
         </p>
+
+        <p class="hero-secondary">
+          Also building reproducible scientific ML tools and exploring
+          physics-informed neural networks.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button-primary" href="#selected-work">
+            Explore my work <span aria-hidden="true">↘</span>
+          </a>
+          <a class="button-secondary" href="mailto:hello@navrjn.com">
+            Get in touch <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span class="location-dot"></span>
+          Vienna, Austria
+          <span class="meta-divider">·</span>
+          Open to engineering opportunities
+        </div>
       </div>
 
       <div class="hero-image">
         <img
           src="/images/me-1.webp"
-          alt="Naveen Rajan"
+          alt="Portrait of Naveen Rajan"
           class="portrait"
+          fetchpriority="high"
         />
+        <div class="image-caption">
+          <span>NA VEEN RAJAN</span>
+          <span>ENGINEER · BUILDER</span>
+        </div>
       </div>
-    </section>
-
-
-    <div class="links">
-      <a href="/projects">View projects →</a>
-      <a href="/writing">Read my writing →</a>
     </div>
   </section>
 
-  <section class="now">
-    <div class="section-label">NOW</div>
+  <section class="now-section" aria-labelledby="now-heading">
+    <div class="section-label" id="now-heading">
+      <span>01</span>
+      WHAT I'M FOCUSED ON
+    </div>
 
     <div class="now-grid">
-      <div>
-        <h3>Building</h3>
-        <p>Something interesting.</p>
-      </div>
+      <article class="now-item">
+        <span class="now-index">01 / BUILDING</span>
+        <h2>Scientific ML</h2>
+        <p>
+          A modular PINN framework for reproducible experiments on
+          differential equations.
+        </p>
+      </article>
 
-      <div>
-        <h3>Learning</h3>
-        <p>AI systems, agents, and whatever catches my attention.</p>
-      </div>
+      <article class="now-item">
+        <span class="now-index">02 / EXPLORING</span>
+        <h2>Perception &amp; autonomy</h2>
+        <p>
+          Reliable visual perception, sensor fusion, and intelligent
+          systems operating on constrained hardware.
+        </p>
+      </article>
 
-      <div>
-        <h3>Thinking about</h3>
-        <p>Technology, startups, and how to build useful things.</p>
-      </div>
+      <article class="now-item">
+        <span class="now-index">03 / INTERESTED IN</span>
+        <h2>Reliable AI systems</h2>
+        <p>
+          Bridging model capability with the observability, performance,
+          and failure handling needed in real deployments.
+        </p>
+      </article>
     </div>
   </section>
 
-  <section>
+  <section class="content-section" id="selected-work">
     <div class="section-heading">
-      <span>SELECTED WORK</span>
-      <a href="/projects">View all →</a>
+      <div>
+        <div class="section-label">
+          <span>02</span>
+          SELECTED WORK
+        </div>
+        <h2 class="section-title">Built, tested, learned.</h2>
+      </div>
+
+      <a class="section-link" href="/projects">
+        All projects <span aria-hidden="true">↗</span>
+      </a>
     </div>
 
     <div class="projects">
-      <a href="/projects" class="project">
-        <div>
-          <h2>Project One</h2>
-          <p>
-            A short description of something you've built.
-          </p>
+      <a class="project project-featured" href="/projects">
+        <div class="project-topline">
+          <span class="project-type">ROBOTICS · EDGE ML</span>
+          <span class="project-arrow" aria-hidden="true">↗</span>
         </div>
 
-        <span>2026</span>
+        <h3>Autonomous perception &amp; navigation</h3>
+
+        <p>
+          Led perception and autonomy systems for a drone platform,
+          combining classical computer vision, depth estimation, sensor
+          fusion, and recovery policies for GPS-denied operation.
+        </p>
+
+        <div class="project-result">
+          <strong>97%</strong>
+          <span>
+            reported navigation robustness after recovery-policy
+            improvements
+          </span>
+        </div>
+
+        <div class="project-footer">
+          <span>Flying4Home / ClearBee</span>
+          <span>2021 — Present</span>
+        </div>
       </a>
 
-      <a href="/projects" class="project">
-        <div>
-          <h2>Project Two</h2>
-          <p>
-            Another interesting thing you've worked on.
-          </p>
+      <a
+        class="project"
+        href="https://github.com/NavRjn/PINN-Thesis"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div class="project-topline">
+          <span class="project-type">SCIENTIFIC ML</span>
+          <span class="project-arrow" aria-hidden="true">↗</span>
         </div>
 
-        <span>2026</span>
+        <h3>PINN research framework</h3>
+
+        <p>
+          A configurable experimentation framework for physics-informed
+          neural networks, with reusable problem abstractions, CLI
+          orchestration, and reproducible training workflows.
+        </p>
+
+        <div class="project-tags">
+          <span>Python</span>
+          <span>PyTorch</span>
+          <span>Numerical methods</span>
+        </div>
+
+        <div class="project-footer">
+          <span>Research tooling</span>
+          <span>2025 — Present</span>
+        </div>
       </a>
 
-      <a href="/projects" class="project">
-        <div>
-          <h2>Project Three</h2>
-          <p>
-            Research, experiment, or open-source project.
-          </p>
+      <a
+        class="project"
+        href="https://github.com/NavRjn/entity-resolution"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div class="project-topline">
+          <span class="project-type">APPLIED AI</span>
+          <span class="project-arrow" aria-hidden="true">↗</span>
         </div>
 
-        <span>2025</span>
+        <h3>Entity resolution</h3>
+
+        <p>
+          An AI-assisted document processing project exploring entity
+          extraction, normalization, evaluation, and reviewable
+          structured outputs.
+        </p>
+
+        <div class="project-tags">
+          <span>Information extraction</span>
+          <span>Evaluation</span>
+        </div>
+
+        <div class="project-footer">
+          <span>Software project</span>
+          <span>View repository</span>
+        </div>
       </a>
     </div>
+
+    <p class="project-note">
+      The navigation case study is being documented separately.
+      Repository links above open the corresponding public projects.
+    </p>
   </section>
 
-  <section>
-    <div class="section-heading">
-      <span>WRITING</span>
-      <a href="/writing">View all →</a>
+  <section class="writing-section">
+    <div class="writing-copy">
+      <div class="section-label">
+        <span>03</span>
+        WRITING &amp; RESEARCH NOTES
+      </div>
+
+      <h2>Understanding systems by building them.</h2>
+
+      <p>
+        Notes on engineering reliable perception pipelines, running
+        reproducible scientific ML experiments, and the trade-offs
+        behind building intelligent systems that work outside a demo.
+      </p>
     </div>
 
-    <div class="writing">
-      <a href="/writing" class="article">
-        <span class="date">SEP 2026</span>
+    <a class="writing-link" href="/writing">
+      Explore writing <span aria-hidden="true">↗</span>
+    </a>
+  </section>
 
-        <div>
-          <h2>The things I'm learning about AI</h2>
-          <p>Notes from building and studying intelligent systems.</p>
-        </div>
+  <section class="contact-section">
+    <div>
+      <div class="section-label">
+        <span>04</span>
+        GET IN TOUCH
+      </div>
 
-        <span class="arrow">↗</span>
+      <h2>Have an interesting problem?</h2>
+
+      <p>
+        I'm interested in applied AI, computer vision, robotics, and
+        engineering teams building technically ambitious products.
+      </p>
+    </div>
+
+    <div class="contact-actions">
+      <a href="mailto:hello@navrjn.com">Email me ↗</a>
+      <a
+        href="https://www.linkedin.com/in/navrjn"
+        target="_blank"
+        rel="noreferrer"
+      >
+        LinkedIn ↗
       </a>
-
-      <a href="/writing" class="article">
-        <span class="date">AUG 2026</span>
-
-        <div>
-          <h2>Building software in the age of AI</h2>
-          <p>Thoughts on engineering, tools, and the future.</p>
-        </div>
-
-        <span class="arrow">↗</span>
+      <a
+        href="https://github.com/navrjn"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
       </a>
     </div>
   </section>
 </Layout>
 
 <style>
-  .hero-title {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
+  .hero {
+    padding-top: 36px;
+  }
+
+  .hero-eyebrow,
+  .section-label,
+  .hero-kicker,
+  .now-index,
+  .project-type {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-eyebrow {
+    display: flex;
     align-items: center;
-    min-height: 80vh;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
+    flex-wrap: wrap;
+    gap: 11px;
+    color: #c0c0c4;
+    font-size: 13px;
+    letter-spacing: 0.09em;
   }
 
-  .hero-content {
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    padding: 2rem 2.5rem;
-    border-radius: 12px;
+  .status-dot,
+  .location-dot {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b4c9a9;
   }
 
+  .eyebrow-separator {
+    color: #505056;
+  }
 
-  .intro {
-    max-width: 500px;
-    font-size: 1.25rem;
-    line-height: 1.6;
+  .hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    align-items: center;
+    position: relative;
+    min-height: 590px;
+    margin-top: 22px;
+    padding: 24px 0 48px;
+    isolation: isolate;
   }
 
   .hero-image {
+    grid-column: 2;
+    grid-row: 1;
     position: relative;
     z-index: 1;
+    width: 100%;
+    height: clamp(420px, 49vw, 560px);
+    overflow: hidden;
+    border: 1px solid #29292d;
+    border-radius: 5px;
+    background: #171719;
   }
 
   .portrait {
     display: block;
     width: 100%;
-    height: min(75vh, 500px);
+    height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 35%;
+    filter: saturate(0.78);
   }
 
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 65%,
+      rgba(0, 0, 0, 0.52) 100%
+    );
+  }
 
+  .image-caption {
+    position: absolute;
+    z-index: 2;
+    bottom: 18px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #e4e4e4;
+    font-size: 10px;
+    letter-spacing: 0.11em;
+  }
 
-  .eyebrow,
-  .section-label,
-  .section-heading {
-    color: #666;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    font-weight: 600;
+  .hero-content {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    position: relative;
+    z-index: 2;
+    width: min(760px, 72%);
+    margin-right: auto;
+    padding: clamp(28px, 4.5vw, 52px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+    background: rgba(15, 15, 17, 0.84);
+    -webkit-backdrop-filter: blur(22px) saturate(115%);
+    backdrop-filter: blur(22px) saturate(115%);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
+  }
+
+  .hero-kicker {
+    margin: 0 0 23px;
+    color: #b4c9a9;
+    font-size: 11px;
   }
 
   h1 {
-    margin: 20px 0;
-    font-size: clamp(52px, 8vw, 92px);
-    line-height: 0.98;
-    letter-spacing: -0.06em;
-    font-weight: 650;
+    max-width: 720px;
+    margin: 0;
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 620;
+    line-height: 1.02;
+    letter-spacing: -0.065em;
   }
 
   h1 span {
-    color: #777;
+    display: block;
+    margin-top: 5px;
+    color: #929298;
   }
 
   .intro {
-    max-width: 570px;
-    color: #999;
-    font-size: 19px;
-    line-height: 1.6;
+    max-width: 520px;
+    margin: 26px 0 0;
+    color: #e0e0e2;
+    font-size: clamp(17px, 1.55vw, 19px);
+    line-height: 1.65;
+    letter-spacing: -0.015em;
   }
 
-  .links {
+  .hero-secondary {
+    max-width: 480px;
+    margin: 12px 0 0;
+    color: #96969c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
     display: flex;
-    gap: 24px;
-    margin-top: 32px;
-    font-size: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 29px;
   }
 
-  .links a {
-    color: #ddd;
+  .button-primary,
+  .button-secondary {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 10px 15px;
+    border: 1px solid #414146;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 550;
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
   }
 
-  .links a:hover {
-    color: white;
+  .button-primary {
+    background: #e3e7df;
+    border-color: #e3e7df;
+    color: #141515;
   }
 
-  section {
-    margin-bottom: 110px;
+  .button-primary:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #111;
   }
 
-  .now {
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
-    padding: 28px 0;
+  .button-secondary {
+    background: rgba(255, 255, 255, 0.025);
+    color: #e5e5e7;
+  }
+
+  .button-secondary:hover {
+    border-color: #88888e;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-top: 28px;
+    color: #a1a1a6;
+    font-size: 12px;
+  }
+
+  .location-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .meta-divider {
+    color: #55555a;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #a0a0a5;
+    font-size: 11px;
+  }
+
+  .section-label > span {
+    color: #b4c9a9;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .now-section {
+    margin-top: 14px;
+    padding: 30px 0 34px;
+    border-top: 1px solid #29292d;
+    border-bottom: 1px solid #29292d;
   }
 
   .now-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-top: 25px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 38px;
+    margin-top: 28px;
   }
 
-  h3 {
-    font-size: 14px;
-    margin: 0 0 6px;
-    color: #ddd;
+  .now-index {
+    color: #74747b;
+    font-size: 10px;
+    letter-spacing: 0.11em;
   }
 
-  .now p {
+  .now-item h2 {
+    margin: 10px 0 7px;
+    font-size: 18px;
+    font-weight: 560;
+    letter-spacing: -0.035em;
+  }
+
+  .now-item p {
+    max-width: 310px;
     margin: 0;
-    color: #777;
+    color: #9a9aa0;
     font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .content-section {
+    margin-top: 96px;
   }
 
   .section-heading {
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
-    border-bottom: 1px solid #222;
-    padding-bottom: 14px;
+    gap: 24px;
+    margin-bottom: 28px;
   }
 
-  .section-heading a {
-    color: #666;
-    letter-spacing: normal;
+  .section-title {
+    margin: 12px 0 0;
+    font-size: clamp(27px, 3.5vw, 38px);
+    font-weight: 570;
+    line-height: 1.15;
+    letter-spacing: -0.05em;
   }
 
-  .section-heading a:hover {
+  .section-link {
+    flex-shrink: 0;
+    padding-bottom: 4px;
+    color: #b7b7bc;
+    font-size: 13px;
+  }
+
+  .section-link:hover {
     color: #fff;
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 
   .project {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
-    padding: 30px 0;
-    border-bottom: 1px solid #222;
-    transition: padding 0.2s ease;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 25px;
+    border: 1px solid #29292d;
+    border-radius: 4px;
+    background: #101012;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
   }
 
   .project:hover {
-    padding-left: 10px;
+    border-color: #515157;
+    background: #141416;
+    transform: translateY(-2px);
   }
 
-  .project h2,
-  .article h2 {
+  .project-featured {
+    grid-column: 1 / -1;
+    padding: 29px;
+    background:
+      radial-gradient(
+        ellipse at 100% 0%,
+        rgba(180, 201, 169, 0.065),
+        transparent 55%
+      ),
+      #101012;
+  }
+
+  .project-topline,
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .project-type {
+    color: #a6a6ac;
+    font-size: 10px;
+  }
+
+  .project-arrow {
+    color: #8c8c92;
+    font-size: 18px;
+    transition: transform 160ms ease;
+  }
+
+  .project:hover .project-arrow {
+    transform: translate(2px, -2px);
+    color: #fff;
+  }
+
+  .project h3 {
+    margin: 24px 0 10px;
+    color: #ededed;
+    font-size: clamp(19px, 2vw, 23px);
+    font-weight: 570;
+    line-height: 1.3;
+    letter-spacing: -0.035em;
+  }
+
+  .project p {
+    max-width: 690px;
     margin: 0;
-    font-size: 19px;
-    letter-spacing: -0.02em;
-  }
-
-  .project p,
-  .article p {
-    margin: 5px 0 0;
-    color: #777;
+    color: #a1a1a7;
     font-size: 14px;
+    line-height: 1.8;
   }
 
-  .project > span {
-    color: #555;
+  .project-result {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 17px 0;
+    border-top: 1px solid #2a2a2e;
+    border-bottom: 1px solid #2a2a2e;
+  }
+
+  .project-result strong {
+    flex-shrink: 0;
+    color: #d5e2cc;
+    font-size: 37px;
+    font-weight: 550;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .project-result span {
+    max-width: 310px;
+    color: #a5a5ab;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .project-tags span {
+    padding: 5px 8px;
+    border: 1px solid #303035;
+    border-radius: 3px;
+    color: #aaaab0;
+    font-size: 11px;
+  }
+
+  .project-footer {
+    margin-top: auto;
+    padding-top: 28px;
+    color: #77777e;
+    font-size: 11px;
+  }
+
+  .project-note {
+    margin: 14px 0 0;
+    color: #77777e;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .writing-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 40px;
+    margin-top: 96px;
+    padding: 36px 0;
+    border-top: 1px solid #29292d;
+    border-bottom: 1px solid #29292d;
+  }
+
+  .writing-copy h2,
+  .contact-section h2 {
+    max-width: 620px;
+    margin: 16px 0 12px;
+    font-size: clamp(28px, 3.5vw, 39px);
+    font-weight: 570;
+    line-height: 1.15;
+    letter-spacing: -0.05em;
+  }
+
+  .writing-copy > p,
+  .contact-section > div > p {
+    max-width: 620px;
+    margin: 0;
+    color: #a1a1a7;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .writing-link {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+    color: #e0e0e3;
     font-size: 13px;
   }
 
-  .article {
-    display: grid;
-    grid-template-columns: 100px 1fr 30px;
-    gap: 20px;
-    padding: 28px 0;
-    border-bottom: 1px solid #222;
+  .contact-section {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 36px;
+    margin-top: 96px;
   }
 
-  .date {
-    color: #555;
-    font-size: 12px;
+  .contact-section h2 {
+    margin-top: 16px;
   }
 
-  .arrow {
-    color: #555;
-    transition: transform 0.2s ease;
+  .contact-actions {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 4px;
   }
 
-  .article:hover .arrow {
-    transform: translate(3px, -3px);
-    color: white;
+  .contact-actions a {
+    color: #bcbcc1;
+    font-size: 13px;
   }
 
-  @media (max-width: 650px) {
+  .contact-actions a:hover {
+    color: #fff;
+  }
+
+  @media (min-width: 1200px) {
+    .hero-stage {
+      min-height: 620px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .hero-stage {
+      min-height: 510px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    }
+
+    .hero-content {
+      width: 82%;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: clamp(43px, 6vw, 58px);
+    }
+
+    .hero-image {
+      height: 450px;
+    }
+
+    .now-grid {
+      gap: 22px;
+    }
+
+    .project {
+      padding: 21px;
+    }
+
+    .project-featured {
+      padding: 25px;
+    }
+  }
+
+  @media (max-width: 600px) {
     .hero {
-      padding: 80px 0;
+      padding-top: 28px;
+    }
+
+    .hero-eyebrow {
+      gap: 7px;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+      margin-top: 20px;
+      padding: 0 0 10px;
+    }
+
+    .hero-image {
+      order: 0;
+      width: 100%;
+      height: clamp(300px, 92vw, 430px);
+    }
+
+    .portrait {
+      object-position: center 32%;
+    }
+
+    .image-caption {
+      left: 14px;
+      right: 14px;
+      bottom: 13px;
+      font-size: 9px;
+    }
+
+    .hero-content {
+      order: 1;
+      width: calc(100% - 20px);
+      margin: -45px 0 0;
+      padding: 25px 22px 23px;
+      align-self: flex-start;
+      background: rgba(15, 15, 17, 0.92);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-kicker {
+      margin-bottom: 17px;
+      font-size: 10px;
+    }
+
+    h1 {
+      font-size: clamp(39px, 10vw, 54px);
+      line-height: 1.03;
+    }
+
+    .intro {
+      margin-top: 19px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-secondary {
+      font-size: 13px;
+    }
+
+    .hero-actions {
+      gap: 10px;
+      margin-top: 23px;
+    }
+
+    .button-primary,
+    .button-secondary {
+      gap: 10px;
+      padding-inline: 12px;
+      font-size: 12px;
+    }
+
+    .hero-meta {
+      gap: 7px;
+      margin-top: 22px;
+      font-size: 11px;
+    }
+
+    .now-section {
+      margin-top: 25px;
+      padding: 24px 0;
     }
 
     .now-grid {
       grid-template-columns: 1fr;
+      gap: 23px;
+      margin-top: 23px;
+    }
+
+    .now-item h2 {
+      margin-top: 7px;
+      font-size: 17px;
+    }
+
+    .now-item p {
+      max-width: 440px;
+      font-size: 13px;
+    }
+
+    .content-section,
+    .writing-section,
+    .contact-section {
+      margin-top: 68px;
+    }
+
+    .section-heading {
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 29px;
+    }
+
+    .section-link {
+      font-size: 12px;
+    }
+
+    .projects {
+      grid-template-columns: 1fr;
+      gap: 11px;
+    }
+
+    .project,
+    .project-featured {
+      grid-column: auto;
+      padding: 22px;
+    }
+
+    .project h3 {
+      margin-top: 19px;
+      font-size: 20px;
+    }
+
+    .project p {
+      font-size: 13px;
+    }
+
+    .project-footer {
+      padding-top: 23px;
+    }
+
+    .writing-section {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 27px 0;
+    }
+
+    .writing-copy h2,
+    .contact-section h2 {
+      font-size: 30px;
+    }
+
+    .writing-link {
+      justify-self: start;
+      padding: 4px 0;
+    }
+
+    .contact-section {
+      align-items: flex-start;
+      flex-direction: column;
       gap: 24px;
     }
 
-    .article {
-      grid-template-columns: 1fr 25px;
+    .contact-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 18px;
     }
+  }
 
-    .date {
-      display: none;
+  @media (prefers-reduced-motion: reduce) {
+    .project,
+    .project-arrow,
+    .button-primary,
+    .button-secondary {
+      transition: none;
     }
   }
 </style>
