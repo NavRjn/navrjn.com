@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Page Not Found | Naveen Rajan">
+  <main class="error-container">
+    <div class="error-meta">404 / ROUTE NOT FOUND</div>
+
+    <h1 class="error-title">Signal lost.</h1>
+
+    <p class="error-description">
+      The page or note you are looking for doesn't exist, has been moved, or hasn't been documented yet.
+    </p>
+
+    <div class="error-actions">
+      <a href="/" class="primary-link">← Return home</a>
+      <a href="/projects" class="secondary-link">Explore projects ↗</a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .error-container {
+    max-width: 42rem;
+    margin: 6rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .error-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+  }
+
+  .error-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 1rem 0;
+  }
+
+  .error-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  .primary-link,
+  .secondary-link {
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid currentColor;
+    transition: opacity 0.15s ease;
+  }
+
+  .secondary-link {
+    opacity: 0.65;
+    border-bottom-color: transparent;
+  }
+
+  .primary-link:hover,
+  .secondary-link:hover {
+    opacity: 1;
+    border-bottom-color: currentColor;
+  }
+</style>
