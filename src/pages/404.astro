@@ -2,77 +2,152 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="404 — Page Not Found | Naveen Rajan">
-  <main class="error-container">
-    <div class="error-meta">404 / ROUTE NOT FOUND</div>
+<Layout title="404 — Wait, where are we?">
+  <main class="four-oh-four">
+    <p class="eyebrow">ERROR 404 // UNCHARTED TERRITORY</p>
 
-    <h1 class="error-title">Signal lost.</h1>
+    <h1>You typed a URL that doesn't exist.</h1>
 
-    <p class="error-description">
-      The page or note you are looking for doesn't exist, has been moved, or hasn't been documented yet.
+    <p class="subtitle">
+      Attempted route: <code id="bad-path">/unknown</code>
     </p>
 
-    <div class="error-actions">
-      <a href="/" class="primary-link">← Return home</a>
-      <a href="/projects" class="secondary-link">Explore projects ↗</a>
+    <div class="excuse-box">
+      <div class="excuse-header">OFFICIAL ENGINEERING EXCUSE:</div>
+      <p id="excuse-text">"Cosmic rays flipped a bit in the router."</p>
+      <button id="reroll-btn" type="button">↻ Generate a better excuse</button>
+    </div>
+
+    <div class="button-arena">
+      <a href="/" class="home-btn">Take me home</a>
+      <button id="blame-btn" type="button">File a complaint</button>
     </div>
   </main>
 </Layout>
 
+<script>
+  const pathEl = document.getElementById('bad-path');
+  if (pathEl) pathEl.textContent = window.location.pathname;
+
+  const excuses = [
+    '"Cosmic rays flipped a bit in the router."',
+    '"It works on localhost, I swear."',
+    '"This page was refactored out of existence at 2 AM."',
+    '"The cat walked across the mechanical keyboard."',
+    '"DNS is propagating. Give it 24 to 48 years."',
+    '"A gradient exploded and took this route with it."'
+  ];
+
+  const excuseEl = document.getElementById('excuse-text');
+  const rerollBtn = document.getElementById('reroll-btn');
+  let idx = 0;
+
+  rerollBtn?.addEventListener('click', () => {
+    idx = (idx + 1) % excuses.length;
+    if (excuseEl) excuseEl.textContent = excuses[idx];
+  });
+
+  // The runaway "File a complaint" button
+  const blameBtn = document.getElementById('blame-btn');
+  blameBtn?.addEventListener('mouseover', () => {
+    const x = (Math.random() - 0.5) * 220;
+    const y = (Math.random() - 0.5) * 120;
+    blameBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  blameBtn?.addEventListener('click', () => {
+    blameBtn.textContent = "Nice reflexes. Still 404 though!";
+  });
+</script>
+
 <style>
-  .error-container {
-    max-width: 42rem;
+  .four-oh-four {
+    max-width: 38rem;
     margin: 6rem auto;
     padding: 0 1.5rem;
   }
 
-  .error-meta {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  .eyebrow {
+    font-family: monospace;
     font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     opacity: 0.6;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  .error-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 600;
-    line-height: 1.1;
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .subtitle {
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 0.2rem 0.4rem;
+    background: rgba(128, 128, 128, 0.15);
+    border-radius: 4px;
+  }
+
+  .excuse-box {
+    padding: 1.25rem;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .excuse-header {
+    font-family: monospace;
+    font-size: 0.7rem;
+    opacity: 0.55;
+    margin-bottom: 0.5rem;
+  }
+
+  #excuse-text {
+    font-size: 1.1rem;
+    font-style: italic;
     margin: 0 0 1rem 0;
   }
 
-  .error-description {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin-bottom: 2.5rem;
+  #reroll-btn {
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: none;
+    color: inherit;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
   }
 
-  .error-actions {
+  .button-arena {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: center;
-    font-size: 0.95rem;
+    position: relative;
+    min-height: 3.5rem;
   }
 
-  .primary-link,
-  .secondary-link {
+  .home-btn {
     text-decoration: none;
     color: inherit;
-    padding-bottom: 0.15rem;
-    border-bottom: 1px solid currentColor;
-    transition: opacity 0.15s ease;
+    border: 1px solid currentColor;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
   }
 
-  .secondary-link {
-    opacity: 0.65;
-    border-bottom-color: transparent;
-  }
-
-  .primary-link:hover,
-  .secondary-link:hover {
-    opacity: 1;
-    border-bottom-color: currentColor;
+  #blame-btn {
+    background: transparent;
+    color: inherit;
+    opacity: 0.7;
+    border: 1px dashed rgba(128, 128, 128, 0.5);
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.18s ease-out;
   }
 </style>
