@@ -1,0 +1,514 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "navrjn-com",
+    "languages": [
+      "astro",
+      "javascript",
+      "json",
+      "markdown",
+      "txt",
+      "typescript",
+      "unknown",
+      "webp"
+    ],
+    "frameworks": [
+      "Astro"
+    ],
+    "description": "Personal site navrjn.com built with Astro, with index, about, now, projects, writing, 404 and not-yet pages, a shared layout, and middleware that holds back unfinished paths.",
+    "analyzedAt": "2026-11-02T22:26:35.688Z",
+    "gitCommitHash": "1cc4fc993954a4bd4b1503a353987859923de6b4"
+  },
+  "nodes": [
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Agent guidance for the Astro project covering how to run the dev server in background mode and links to Astro documentation guides.",
+      "tags": [
+        "documentation",
+        "agent-instructions",
+        "astro",
+        "development"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "CLAUDE.md",
+      "summary": "Project instructions for Claude Code describing background dev server commands and Astro documentation links for routing, components, content, styling, and i18n.",
+      "tags": [
+        "documentation",
+        "agent-instructions",
+        "astro",
+        "development"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Default Astro minimal starter README describing project structure, npm commands, and further learning resources.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "astro",
+        "starter-template"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "npm manifest for navrjn-com declaring ESM module type, Node 22.12+ engine, Astro scripts, and dependencies on astro and @astrojs/sitemap.",
+      "tags": [
+        "configuration",
+        "npm",
+        "dependencies",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "TypeScript configuration extending Astro's strict preset, including all project files and excluding the dist output.",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:astro.config.mjs",
+      "type": "file",
+      "name": "astro.config.mjs",
+      "filePath": "astro.config.mjs",
+      "summary": "Astro configuration setting the site URL to https://navrjn.com and enabling the sitemap integration.",
+      "tags": [
+        "configuration",
+        "build-system",
+        "astro",
+        "sitemap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:public/_headers",
+      "type": "config",
+      "name": "_headers",
+      "filePath": "public/_headers",
+      "summary": "Static hosting headers adding nosniff, frame denial, strict referrer policy and disabled camera/microphone/geolocation permissions for all routes.",
+      "tags": [
+        "configuration",
+        "security",
+        "http-headers"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:public/robots.txt",
+      "type": "document",
+      "name": "robots.txt",
+      "filePath": "public/robots.txt",
+      "summary": "Robots file allowing all crawlers and pointing to the sitemap index.",
+      "tags": [
+        "seo",
+        "crawler",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/layouts/Layout.astro",
+      "type": "file",
+      "name": "Layout.astro",
+      "filePath": "src/layouts/Layout.astro",
+      "summary": "Shared page layout providing head metadata, favicon, site navigation (Writing, Projects, About, Now) and global styles.",
+      "tags": [
+        "layout",
+        "component",
+        "navigation",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/middleware.ts",
+      "type": "file",
+      "name": "middleware.ts",
+      "filePath": "src/middleware.ts",
+      "summary": "Astro middleware that redirects unfinished paths (/writing, /now, /projects, /about) to /not-yet, preserving the original path in a query parameter.",
+      "tags": [
+        "middleware",
+        "redirect",
+        "routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware.ts:onRequest",
+      "type": "function",
+      "name": "onRequest",
+      "filePath": "src/middleware.ts",
+      "summary": "Request handler that checks the pathname against the unfinished list and issues a 302 redirect to /not-yet, otherwise continues.",
+      "tags": [
+        "middleware",
+        "redirect",
+        "routing"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        6,
+        18
+      ]
+    },
+    {
+      "id": "file:src/pages/404.astro",
+      "type": "file",
+      "name": "404.astro",
+      "filePath": "src/pages/404.astro",
+      "summary": "Custom 404 page with a friendly message and a link back home.",
+      "tags": [
+        "page",
+        "error-page",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/about.astro",
+      "type": "file",
+      "name": "about.astro",
+      "filePath": "src/pages/about.astro",
+      "summary": "About page rendered inside the shared layout.",
+      "tags": [
+        "page",
+        "about",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/index.astro",
+      "type": "file",
+      "name": "index.astro",
+      "filePath": "src/pages/index.astro",
+      "summary": "Homepage with hero, featured projects and writing teasers plus extensive scoped styling.",
+      "tags": [
+        "page",
+        "homepage",
+        "entry-point",
+        "astro"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/pages/not-yet.astro",
+      "type": "file",
+      "name": "not-yet.astro",
+      "filePath": "src/pages/not-yet.astro",
+      "summary": "Placeholder page shown when a visitor requests an unfinished section; receives the origin path via query string.",
+      "tags": [
+        "page",
+        "placeholder",
+        "redirect-target",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/now.astro",
+      "type": "file",
+      "name": "now.astro",
+      "filePath": "src/pages/now.astro",
+      "summary": "Now page describing current activities.",
+      "tags": [
+        "page",
+        "now",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/projects.astro",
+      "type": "file",
+      "name": "projects.astro",
+      "filePath": "src/pages/projects.astro",
+      "summary": "Projects listing page.",
+      "tags": [
+        "page",
+        "projects",
+        "astro"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/writing.astro",
+      "type": "file",
+      "name": "writing.astro",
+      "filePath": "src/pages/writing.astro",
+      "summary": "Writing/blog listing page.",
+      "tags": [
+        "page",
+        "writing",
+        "astro"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:README.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:CLAUDE.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:package.json",
+      "target": "file:astro.config.mjs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:package.json",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tsconfig.json",
+      "target": "file:src/middleware.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/pages/404.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/about.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/index.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/not-yet.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/now.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/projects.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/writing.astro",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware.ts",
+      "target": "function:src/middleware.ts:onRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware.ts",
+      "target": "function:src/middleware.ts:onRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware.ts",
+      "target": "file:src/pages/not-yet.astro",
+      "type": "routes",
+      "direction": "forward",
+      "weight": null
+    },
+    {
+      "source": "file:src/middleware.ts",
+      "target": "file:src/pages/not-yet.astro",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:astro.config.mjs",
+      "target": "file:src/layouts/Layout.astro",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:public/robots.txt",
+      "target": "file:astro.config.mjs",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:pages",
+      "name": "Pages",
+      "description": "Route-level Astro pages rendered by file-based routing.",
+      "nodeIds": [
+        "file:src/pages/index.astro",
+        "file:src/pages/about.astro",
+        "file:src/pages/now.astro",
+        "file:src/pages/projects.astro",
+        "file:src/pages/writing.astro",
+        "file:src/pages/404.astro",
+        "file:src/pages/not-yet.astro"
+      ]
+    },
+    {
+      "id": "layer:layout-middleware",
+      "name": "Layout & Middleware",
+      "description": "Shared page layout and request middleware that gates unfinished routes.",
+      "nodeIds": [
+        "file:src/layouts/Layout.astro",
+        "file:src/middleware.ts"
+      ]
+    },
+    {
+      "id": "layer:config-static",
+      "name": "Configuration & Static Assets",
+      "description": "Build/tooling configuration plus public static files (headers, robots).",
+      "nodeIds": [
+        "file:astro.config.mjs",
+        "config:package.json",
+        "config:tsconfig.json",
+        "config:public/_headers",
+        "document:public/robots.txt"
+      ]
+    },
+    {
+      "id": "layer:docs",
+      "name": "Documentation",
+      "description": "Project README and AI-agent instruction files.",
+      "nodeIds": [
+        "document:README.md",
+        "document:CLAUDE.md",
+        "document:AGENTS.md"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Project Overview",
+      "description": "Start with the README and package.json to see this is an Astro starter-derived personal site.",
+      "nodeIds": [
+        "document:README.md",
+        "config:package.json"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Astro Configuration",
+      "description": "astro.config.mjs sets the site URL and the sitemap integration.",
+      "nodeIds": [
+        "file:astro.config.mjs",
+        "config:tsconfig.json"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Shared Layout",
+      "description": "Every page wraps its content in Layout.astro, which supplies head metadata, navigation and global styles.",
+      "nodeIds": [
+        "file:src/layouts/Layout.astro"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Pages",
+      "description": "File-based routes: home, about, now, projects and writing, all importing the shared layout.",
+      "nodeIds": [
+        "file:src/pages/index.astro",
+        "file:src/pages/about.astro",
+        "file:src/pages/now.astro",
+        "file:src/pages/projects.astro",
+        "file:src/pages/writing.astro"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Holding Back Unfinished Pages",
+      "description": "The middleware redirects unfinished paths to the not-yet page; 404 handles unknown routes.",
+      "nodeIds": [
+        "file:src/middleware.ts",
+        "function:src/middleware.ts:onRequest",
+        "file:src/pages/not-yet.astro",
+        "file:src/pages/404.astro"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Static Assets & Agent Docs",
+      "description": "Response headers and robots.txt live in public/; CLAUDE.md and AGENTS.md guide AI assistants.",
+      "nodeIds": [
+        "config:public/_headers",
+        "document:public/robots.txt",
+        "document:CLAUDE.md",
+        "document:AGENTS.md"
+      ]
+    }
+  ]
+}

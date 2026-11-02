@@ -1,0 +1,143 @@
+{
+  "name": "navrjn-com",
+  "description": "Personal site navrjn.com built with Astro, with index, about, now, projects, writing, 404 and not-yet pages, a shared layout, and middleware that holds back unfinished paths.",
+  "languages": [
+    "astro",
+    "javascript",
+    "json",
+    "markdown",
+    "txt",
+    "typescript",
+    "unknown",
+    "webp"
+  ],
+  "frameworks": [
+    "Astro"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 22,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 22,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "astro.config.mjs",
+      "language": "javascript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": "public/_headers",
+      "language": "unknown",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "public/robots.txt",
+      "language": "txt",
+      "sizeLines": 4,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/layouts/Layout.astro",
+      "language": "astro",
+      "sizeLines": 163,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware.ts",
+      "language": "typescript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/404.astro",
+      "language": "astro",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/about.astro",
+      "language": "astro",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/index.astro",
+      "language": "astro",
+      "sizeLines": 1003,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/not-yet.astro",
+      "language": "astro",
+      "sizeLines": 148,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/now.astro",
+      "language": "astro",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/projects.astro",
+      "language": "astro",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/writing.astro",
+      "language": "astro",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    }
+  ],
+  "totalFiles": 17,
+  "filteredByIgnore": 2,
+  "estimatedComplexity": "small",
+  "importMap": {
+    "AGENTS.md": [],
+    "CLAUDE.md": [],
+    "README.md": [],
+    "astro.config.mjs": [],
+    "package.json": [],
+    "public/_headers": [],
+    "public/robots.txt": [],
+    "src/layouts/Layout.astro": [],
+    "src/middleware.ts": [],
+    "src/pages/404.astro": [],
+    "src/pages/about.astro": [],
+    "src/pages/index.astro": [],
+    "src/pages/not-yet.astro": [],
+    "src/pages/now.astro": [],
+    "src/pages/projects.astro": [],
+    "src/pages/writing.astro": [],
+    "tsconfig.json": []
+  }
+}

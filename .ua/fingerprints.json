@@ -1,0 +1,199 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "1cc4fc993954a4bd4b1503a353987859923de6b4",
+  "generatedAt": "2026-11-02T22:26:36.340Z",
+  "files": {
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "258e71559ecd267cdca0f9751feb80e3249b79fd4b67e534247788cfdb4522c4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": false
+    },
+    "CLAUDE.md": {
+      "filePath": "CLAUDE.md",
+      "contentHash": "258e71559ecd267cdca0f9751feb80e3249b79fd4b67e534247788cfdb4522c4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": false
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "9d5901b9a7c76174e6372535975a00056ecfb6a057c5101c64199e894e56aad3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": false
+    },
+    "astro.config.mjs": {
+      "filePath": "astro.config.mjs",
+      "contentHash": "fcd73e49620f355f709855bca62e1a1e3289ca4eebc1120725d1b5b50a40b32e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "astro/config",
+          "specifiers": [
+            "defineConfig"
+          ]
+        },
+        {
+          "source": "@astrojs/sitemap",
+          "specifiers": [
+            "sitemap"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "ae490077518dabe004e012b4d2f4c63a141fb3d6a8312be672366610e648a18a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 22,
+      "hasStructuralAnalysis": false
+    },
+    "public/_headers": {
+      "filePath": "public/_headers",
+      "contentHash": "691bd976620ea97c199abccfc1a63b8b23dde26cf0e79f743900157f11a3647f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": false
+    },
+    "public/robots.txt": {
+      "filePath": "public/robots.txt",
+      "contentHash": "82743143cccbf346ff591d00c38ffb1e5136798aafe7a3976fa09c807d674ac3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "src/layouts/Layout.astro": {
+      "filePath": "src/layouts/Layout.astro",
+      "contentHash": "ed026ccee43b77b1a00ec82f8214d10ea856d61bb10cd877e62d65dea1185b47",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 164,
+      "hasStructuralAnalysis": false
+    },
+    "src/middleware.ts": {
+      "filePath": "src/middleware.ts",
+      "contentHash": "e5a916978ca142b6fdd08a3c1adb40f9442bd223f22486029ed748e853de90ca",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "astro:middleware",
+          "specifiers": [
+            "defineMiddleware"
+          ]
+        }
+      ],
+      "exports": [
+        "onRequest"
+      ],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/404.astro": {
+      "filePath": "src/pages/404.astro",
+      "contentHash": "be7579be9673130c5a1db09e9c35fa9cf24c25c997830d5f4836ebbd5085f5b6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 153,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/about.astro": {
+      "filePath": "src/pages/about.astro",
+      "contentHash": "8b1dba9109d58a78968cd902d2ad33441a8875cfebaf6d0402a6c252f04f2cdf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 105,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/index.astro": {
+      "filePath": "src/pages/index.astro",
+      "contentHash": "7ecb002c72cd237ec9b514c06d8de6a08a965c4c3d413ba4373e6b2cc81f0727",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1004,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/not-yet.astro": {
+      "filePath": "src/pages/not-yet.astro",
+      "contentHash": "a9733b180b2564f46446c78d94d353b8acbe8500d414774ae5960ee674dc6c17",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 149,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/now.astro": {
+      "filePath": "src/pages/now.astro",
+      "contentHash": "8256af8e0735fd12e8cdfcfafa40f0ea42042a4e3fd39e036b5ccb429a939f43",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 83,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/projects.astro": {
+      "filePath": "src/pages/projects.astro",
+      "contentHash": "de2d41c0de5872a2b14d635bb23d07b5ec28bccb34a667fe552ce1fa10ebde73",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 151,
+      "hasStructuralAnalysis": false
+    },
+    "src/pages/writing.astro": {
+      "filePath": "src/pages/writing.astro",
+      "contentHash": "de7fd96261dd68dca78a70a8274c46da1632f940fb07abc1ca03184ed06b9b3e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 132,
+      "hasStructuralAnalysis": false
+    },
+    "tsconfig.json": {
+      "filePath": "tsconfig.json",
+      "contentHash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": false
+    }
+  }
+}
