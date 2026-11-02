@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Understand anything:
+.ua/intermediate/
+.ua/diff-overlay.json
+.ua/.trash-*
