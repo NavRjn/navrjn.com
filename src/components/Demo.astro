@@ -1,0 +1,66 @@
+---
+// Click-to-load interactive demo so heavy embeds don't slow the page.
+interface Props {
+  src: string;
+  title: string;
+  caption?: string;
+  height?: number;
+}
+const { src, title, caption, height = 520 } = Astro.props;
+---
+
+<figure>
+  <div class="frame" style={`height:${height}px`} data-src={src} data-title={title}>
+    <button type="button">▶ Launch interactive demo: {title}</button>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.frame[data-src]').forEach((frame) => {
+    frame.querySelector('button')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = frame.dataset.src!;
+      iframe.title = frame.dataset.title ?? 'Demo';
+      iframe.loading = 'lazy';
+      frame.replaceChildren(iframe);
+    });
+  });
+</script>
+
+<style>
+  figure {
+    margin: 32px 0;
+  }
+  .frame {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid #29292d;
+    border-radius: 4px;
+    background: #101012;
+  }
+  button {
+    padding: 12px 18px;
+    border: 1px solid #414146;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #e5e5e7;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: #88888e;
+  }
+  .frame :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  figcaption {
+    margin-top: 10px;
+    color: #77777e;
+    font-size: 12px;
+  }
+</style>

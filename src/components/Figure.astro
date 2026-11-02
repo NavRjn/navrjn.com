@@ -1,0 +1,34 @@
+---
+// Architecture diagram / screenshot with caption. `src` is a path under /public (SVG recommended).
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+const { src, alt, caption } = Astro.props;
+---
+
+<figure>
+  <img src={src} alt={alt} loading="lazy" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  figure {
+    margin: 32px 0;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #29292d;
+    border-radius: 4px;
+    background: #101012;
+  }
+  figcaption {
+    margin-top: 10px;
+    color: #77777e;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,193 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  featured?: boolean;
+}
+
+const { project, featured = false } = Astro.props;
+const { data } = project;
+
+// Case-study page if published, otherwise the repo (if any), otherwise a static card.
+const href = data.draft ? data.links.repo : `/projects/${project.id}`;
+const external = data.draft && !!href;
+const Tag = href ? 'a' : 'div';
+const linkProps = href
+  ? { href, ...(external ? { target: '_blank', rel: 'noreferrer' } : {}) }
+  : {};
+---
+
+<Tag class:list={['project', { 'project-featured': featured }]} {...linkProps}>
+  <div class="project-topline">
+    <span class="project-type">{data.type}</span>
+    {href && <span class="project-arrow" aria-hidden="true">↗</span>}
+  </div>
+
+  <h3>{data.title}</h3>
+  <p>{data.summary}</p>
+
+  {data.metric && (
+    <div class="project-result">
+      <strong>{data.metric.value}</strong>
+      <span>{data.metric.label}</span>
+    </div>
+  )}
+
+  {!data.metric && data.tags.length > 0 && (
+    <div class="project-tags">
+      {data.tags.map((t) => <span>{t}</span>)}
+    </div>
+  )}
+
+  <div class="project-footer">
+    <span>{data.role}</span>
+    <span>{data.period}</span>
+  </div>
+</Tag>
+
+<style>
+  .project {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 25px;
+    border: 1px solid #29292d;
+    border-radius: 4px;
+    background: #101012;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
+  }
+
+  a.project:hover {
+    border-color: #515157;
+    background: #141416;
+    transform: translateY(-2px);
+  }
+
+  .project-featured {
+    grid-column: 1 / -1;
+    padding: 29px;
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba(180, 201, 169, 0.065), transparent 55%),
+      #101012;
+  }
+
+  .project-topline,
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .project-type {
+    color: #a6a6ac;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+  }
+
+  .project-arrow {
+    color: #8c8c92;
+    font-size: 18px;
+    transition: transform 160ms ease;
+  }
+
+  a.project:hover .project-arrow {
+    transform: translate(2px, -2px);
+    color: #fff;
+  }
+
+  h3 {
+    margin: 24px 0 10px;
+    color: #ededed;
+    font-size: clamp(19px, 2vw, 23px);
+    font-weight: 570;
+    line-height: 1.3;
+    letter-spacing: -0.035em;
+  }
+
+  p {
+    max-width: 690px;
+    margin: 0;
+    color: #a1a1a7;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .project-result {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 17px 0;
+    border-top: 1px solid #2a2a2e;
+    border-bottom: 1px solid #2a2a2e;
+  }
+
+  .project-result strong {
+    flex-shrink: 0;
+    color: #d5e2cc;
+    font-size: 37px;
+    font-weight: 550;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .project-result span {
+    max-width: 310px;
+    color: #a5a5ab;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .project-tags span {
+    padding: 5px 8px;
+    border: 1px solid #303035;
+    border-radius: 3px;
+    color: #aaaab0;
+    font-size: 11px;
+  }
+
+  .project-footer {
+    margin-top: auto;
+    padding-top: 28px;
+    color: #77777e;
+    font-size: 11px;
+  }
+
+  @media (max-width: 600px) {
+    .project,
+    .project-featured {
+      grid-column: auto;
+      padding: 22px;
+    }
+
+    h3 {
+      margin-top: 19px;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project,
+    .project-arrow {
+      transition: none;
+    }
+  }
+</style>

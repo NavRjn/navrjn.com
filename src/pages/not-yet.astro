@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Not Yet — Naveen Rajan">
-  <main class="not-yet-wrap">
+<Layout title="Not yet">
+  <div class="not-yet-wrap">
     <div class="pill">⏳ STATUS: STILL COOKING</div>
 
     <h1>Not yet.</h1>
@@ -24,7 +24,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <a href="/" class="back-link">← Back to safety (Home)</a>
-  </main>
+  </div>
 </Layout>
 
 <script>
@@ -33,7 +33,12 @@ import Layout from '../layouts/Layout.astro';
   const msg = document.getElementById('context-msg');
 
   if (from && msg) {
-    msg.innerHTML = `You tried to peek at <code>${from}</code>, but it's still in the oven. Check back soon. I promise it won't be placeholder lorem ipsum.`;
+    const code = document.createElement('code');
+    code.textContent = from;
+    msg.replaceChildren(
+      'You tried to peek at ', code,
+      ", but it's still in the oven. Check back soon. I promise it won't be placeholder lorem ipsum."
+    );
   }
 
   let pct = 68;

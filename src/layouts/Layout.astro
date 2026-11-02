@@ -2,31 +2,58 @@
 interface Props {
   title?: string;
   description?: string;
+  image?: string; // absolute path under /public, e.g. "/og.jpg"
 }
 
+const siteName = "Naveen Rajan";
 const {
-  title = "Naveen Rajan",
-  description = "Engineer, founder, and researcher working at the intersection of SciML, CV, an embodied robotics.",
+  title = siteName,
+  description = "Machine learning engineer in Vienna building computer vision and autonomous systems that work outside the lab. Open to full-time roles.",
+  image = "/og.jpg",
 } = Astro.props;
 
-const siteName = "Naveen Rajan";
 const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteName,
+  jobTitle: "Machine Learning Engineer",
+  url: "https://navrjn.com",
+  email: "mailto:hello@navrjn.com",
+  image: new URL("/og.jpg", Astro.site).href,
+  address: { "@type": "PostalAddress", addressLocality: "Vienna", addressCountry: "AT" },
+  sameAs: ["https://github.com/navrjn", "https://www.linkedin.com/in/navrjn"],
+};
+
+const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen%20Rajan";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
 
     <link rel="icon" href="/favicon.svg" />
 
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
     <slot name="head" />
   </head>
@@ -35,11 +62,11 @@ const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
     <header class="site-header">
       <a class="logo" href="/">Naveen Rajan</a>
 
-      <nav>
-        <a href="/writing">Writing</a>
-        <a href="/projects">Projects</a>
+      <nav aria-label="Primary">
+        <a href="/projects">Work</a>
         <a href="/about">About</a>
-        <a href="/now">Now</a>
+        <a href="/cv.pdf" download="Naveen-Rajan-CV.pdf">Résumé</a>
+        <a class="nav-cta" href={mailto}>Contact</a>
       </nav>
     </header>
 
@@ -48,12 +75,12 @@ const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
     </main>
 
     <footer>
-      <span>© {new Date().getFullYear()} Naveen Rajan</span>
+      <span>© {new Date().getFullYear()} Naveen Rajan · hello@navrjn.com</span>
 
       <div>
         <a href="https://github.com/navrjn">GitHub</a>
-        <a href="https://linkedin/in/navrjn">LinkedIn</a>
-        <a href="mailto:hello@navrjn.com">Email</a>
+        <a href="https://www.linkedin.com/in/navrjn">LinkedIn</a>
+        <a href={mailto}>Email</a>
       </div>
     </footer>
   </body>
@@ -110,6 +137,7 @@ const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
 
   nav {
     display: flex;
+    align-items: center;
     gap: 22px;
     color: #888;
     font-size: 14px;
@@ -121,6 +149,20 @@ const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
 
   nav a:hover {
     color: #fff;
+  }
+
+  nav .nav-cta {
+    padding: 6px 12px;
+    border: 1px solid #e3e7df;
+    border-radius: 3px;
+    background: #e3e7df;
+    color: #141515;
+    font-weight: 550;
+  }
+
+  nav .nav-cta:hover {
+    background: #fff;
+    color: #111;
   }
 
   footer {
@@ -145,14 +187,13 @@ const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
 
   @media (max-width: 600px) {
     .site-header {
-      align-items: flex-start;
-      gap: 20px;
+      align-items: center;
+      gap: 12px;
     }
 
     nav {
       gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      font-size: 13px;
     }
 
     footer {
