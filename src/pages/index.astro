@@ -31,7 +31,7 @@ const posts = (await getCollection("writing"))
 
     <div class="hero-stage">
       <div class="hero-content">
-        <p class="hero-kicker">COMPUTER VISION · AUTONOMOUS SYSTEMS</p>
+        <p class="hero-kicker">HI, I'M NAVEEN · COMPUTER VISION · AUTONOMOUS SYSTEMS</p>
 
         <h1>
           I build ML systems that
@@ -222,6 +222,9 @@ const posts = (await getCollection("writing"))
 </script>
 
 <style>
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(180,201,169,.5); } 50% { box-shadow: 0 0 0 6px rgba(180,201,169,0); } }
+  .status-dot { animation: pulse 2.4s ease-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
   .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .post { padding: 22px; border: 1px solid #29292d; border-radius: 4px; background: #101012; transition: border-color 180ms ease; }
   .post:hover { border-color: #515157; }

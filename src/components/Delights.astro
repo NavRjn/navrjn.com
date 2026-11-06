@@ -73,6 +73,35 @@
   });
   dialog?.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
 
+  // Scroll reveal + count-up for metrics (skipped entirely under reduced motion)
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (!en.isIntersecting) continue;
+        const el = en.target as HTMLElement;
+        el.classList.add("rv-in");
+        if (el.matches(".project-result strong, .facts dd")) countUp(el);
+        io.unobserve(el);
+      }
+    }, { threshold: 0.12 });
+    document.querySelectorAll<HTMLElement>("main section, .project, .post, .article, .facts dd, .project-result strong").forEach((el, i) => {
+      if (el.matches("main section.hero")) return;
+      el.classList.add("rv"); el.style.setProperty("--d", `${(i % 3) * 70}ms`); io.observe(el);
+    });
+  }
+  function countUp(el: HTMLElement) {
+    const src = el.textContent ?? "";
+    if (!/\d/.test(src) || src.length > 24) return;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = src.replace(/\d+(\.\d+)?/g, (m) => (parseFloat(m) * e).toFixed((m.split(".")[1] ?? "").length));
+      if (k < 1) requestAnimationFrame(step); else el.textContent = src;
+    };
+    requestAnimationFrame(step);
+    setTimeout(() => (el.textContent = src), 1200);
+  }
+
   console.log(
     "%c N R %c  Hi. You read the console, so you might like: curl https://navrjn.com/llms.txt  ·  press ? for shortcuts  ·  ↑↑↓↓←→←→BA",
     "background:#b4c9a9;color:#111;font-weight:700;padding:2px 4px", "color:#b4c9a9"
@@ -80,6 +109,8 @@
 </script>
 
 <style>
+  :global(.rv) { opacity: 0; transform: translateY(14px); transition: opacity .6s ease var(--d, 0ms), transform .6s ease var(--d, 0ms); }
+  :global(.rv.rv-in) { opacity: 1; transform: none; }
   dialog { border: 1px solid #3a3a40; border-radius: 6px; background: #121214; color: #e7e7e7; padding: 24px 28px; max-width: min(420px, calc(100% - 32px)); }
   dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
   h2 { margin: 0 0 14px; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #b4c9a9; }

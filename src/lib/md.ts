@@ -53,7 +53,7 @@ export function profileMarkdown(): string {
   for (const e of p.education) lines.push(`### ${e.title}, ${e.org} (${e.period})`, "", e.summary, "");
   lines.push("## Skills", "");
   for (const s of p.skills) lines.push(`- **${s.group}:** ${s.items.join(", ")}`);
-  lines.push("", "## How I work", "", p.workingStyle, "", "## Recognition and press", "");
+  lines.push("", "## How I work", "", p.workingStyle, "", "## Beyond the code", "", p.beyondCode, "", "## Recognition and press", "");
   for (const a of p.awards) lines.push(`- ${a}`);
   for (const x of p.press) lines.push(`- [${x.outlet}: ${x.title}](${x.url})`);
   return lines.join("\n") + "\n";

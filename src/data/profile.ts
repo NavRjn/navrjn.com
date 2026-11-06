@@ -81,6 +81,8 @@ export const profile = {
     { group: "Robotics & embedded", items: ["DJI SDK", "ESP32", "Raspberry Pi", "ROS/Gazebo", "ArduPilot", "MQTT", "I2C", "Fusion 360"] },
     { group: "Testing", items: ["Playwright", "Espresso", "pytest", "Regression & contract tests", "LLM evaluation"] },
   ],
+  beyondCode:
+    "I fly the drones I write software for, solder my own boards, and model and film the product in Blender and DaVinci Resolve. I like the whole loop: from a CAD part to a flight log to a pitch.",
   awards: ["2nd place, StartupLive Global (pitch competition)"],
   press: [
     {
