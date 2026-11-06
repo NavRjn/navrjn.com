@@ -21,7 +21,23 @@ const { Content } = await render(project);
 const mailto = `mailto:hello@navrjn.com?subject=${encodeURIComponent(`Re: ${data.title}`)}`;
 ---
 
-<Layout title={data.title} description={data.summary}>
+<Layout
+  title={data.title}
+  description={data.summary}
+  type="article"
+  markdown={`/projects/${project.id}.md`}
+  jsonLd={[
+    {
+      "@type": data.links.repo ? "SoftwareSourceCode" : "CreativeWork",
+      name: data.title,
+      description: data.summary,
+      author: { "@id": "https://navrjn.com/#person" },
+      url: new URL(Astro.url.pathname, Astro.site).href,
+      ...(data.links.repo ? { codeRepository: data.links.repo } : {}),
+      keywords: [...data.tags, ...data.stack].join(", "),
+    },
+  ]}
+>
   <article class="page">
     <a class="back" href="/projects">← All work</a>
     <p class="eyebrow">{data.type}</p>
@@ -54,7 +70,7 @@ const mailto = `mailto:hello@navrjn.com?subject=${encodeURIComponent(`Re: ${data
 
     <section class="cta">
       <h2>Working on something similar?</h2>
-      <p>I'm open to full-time ML and computer-vision roles. Vienna, on-site or remote (EU).</p>
+      <p>I'm available immediately for ML, computer-vision and software roles. Vienna, on-site or remote (EU).</p>
       <a class="button" href={mailto}>Email me ↗</a>
     </section>
   </article>

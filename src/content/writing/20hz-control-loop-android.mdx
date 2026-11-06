@@ -1,0 +1,37 @@
+---
+title: Keeping a 20 Hz control loop alive on Android
+summary: Structured concurrency, supervision and the lifecycle bugs that matter when perception, telemetry and flight control share one phone.
+date: 2026-11-04
+tags: [Kotlin, Coroutines, Real-time, Robotics]
+---
+
+A drone that navigates by vision has a simple-sounding job: look, decide, command, repeat, twenty times a second. On an Android phone, that loop competes with camera capture, neural-network inference, telemetry from the flight controller and the app's own UI. Most of what went wrong in our system was not the maths. It was concurrency.
+
+## The failure mode: things that outlive their reason
+
+Early versions launched each pipeline (perception, telemetry, control) as independent coroutines. That works until something fails or a flight ends. Then you get:
+
+- **Leaks.** A perception job keeps running after the flight state it served is gone.
+- **Zombie states.** A control coroutine holds an old target and keeps commanding it.
+- **Contention.** A slow inference call starves the control loop, which is exactly what you cannot afford at 20 Hz.
+
+None of these crash the app. They show up as a drone that sometimes behaves oddly, which is the worst kind of bug to debug.
+
+## The fix: one owner for every lifetime
+
+I restructured the system as a hierarchy. A single supervisor scope owns the pipelines as children. A few rules fell out of that:
+
+1. **Nothing is launched in a global scope.** Every coroutine has a parent that is responsible for it.
+2. **Cancelling the parent cancels everything.** Ending a flight is one operation, not a checklist.
+3. **A failing child is a decision, not an accident.** Some failures should restart the child; some should land the drone. The supervisor decides, in one place.
+4. **Shared state has a single writer.** Pipelines publish snapshots; the control loop reads the latest one instead of waiting on anybody.
+
+The last rule is what keeps the loop deterministic. Control never blocks on perception. If a fresh depth estimate isn't ready this tick, it uses the last good state and the recovery logic knows how stale that state is.
+
+## Why 20 Hz is a budget, not a target
+
+A stable 20 Hz means each tick has 50 ms for everything that must happen on that thread. That reframes design questions as budget questions: inference runs off the control path, logging is asynchronous, and anything that can't meet its deadline degrades gracefully instead of delaying the tick.
+
+## What I'd tell my past self
+
+Design the lifecycle first. Deciding who owns what, and what happens when it ends, is cheaper than hunting an intermittent leak with a drone in the air. And make the system observable from day one, because structured concurrency tells you what *should* happen and only telemetry tells you what did.

@@ -1,0 +1,8 @@
+/* TEAM */
+Name: Naveen Rajan
+Site: https://navrjn.com
+Location: Vienna, Austria
+
+/* SITE */
+Built with: Astro, MDX, hand-written SVG diagrams
+Machine-readable: /llms.txt /llms-full.txt /resume.json /rss.xml

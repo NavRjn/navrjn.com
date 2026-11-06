@@ -1,0 +1,89 @@
+---
+import { profile } from "../data/profile";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Naveen Rajan — CV</title>
+    <link rel="canonical" href="https://navrjn.com/cv.pdf" />
+  </head>
+  <body>
+    <div class="sheet">
+      <header>
+        <h1>{profile.name}</h1>
+        <p class="role">{profile.title} · computer vision &amp; autonomous systems</p>
+        <p class="contact">
+          {profile.location} · {profile.email} · navrjn.com · linkedin.com/in/navrjn · github.com/NavRjn
+        </p>
+      </header>
+
+      <section>
+        <h2>Profile</h2>
+        <p>{profile.summary}</p>
+        <p><b>{profile.availability}.</b> {profile.lookingFor}</p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+        {profile.experience.map((e) => (
+          <div class="job">
+            <div class="row"><div><b>{e.title}</b>, {e.org}</div><span>{e.period}</span></div>
+            <p>{e.summary}</p>
+            {e.bullets.length > 0 && <ul>{e.bullets.slice(0, 6).map((b) => <li>{b}</li>)}</ul>}
+          </div>
+        ))}
+      </section>
+
+      <section>
+        <h2>Selected projects</h2>
+        <div class="job">
+          <div class="row"><div><b>LLM entity resolution</b> · github.com/NavRjn/entity-resolution</div><span>2025 – present</span></div>
+          <p>Documents to knowledge graphs: Docling parsing, gpt-4o extraction into a strict Pydantic ontology, FastAPI + React review UI, Langfuse tracing, ground-truth evaluation (0.71 F1, work in progress), offline test suite.</p>
+        </div>
+        <div class="job">
+          <div class="row"><div><b>PINN research framework</b> · github.com/NavRjn/PINN-Thesis</div><span>2025 – present</span></div>
+          <p>Modular PyTorch/Typer CLI framework with runtime problem plugins and YAML-reproducible experiments; Vision Transformers and attention-based conditioning for PDE families.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        {profile.education.map((e) => (
+          <div class="job">
+            <div class="row"><div><b>{e.title}</b>, {e.org}</div><span>{e.period}</span></div>
+            <p>{e.summary}</p>
+          </div>
+        ))}
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        {profile.skills.slice(0, 7).map((s) => <p class="skill"><b>{s.group}:</b> {s.items.join(", ")}</p>)}
+        <p class="skill"><b>Spoken:</b> {profile.languages.map((l) => `${l.name} (${l.level})`).join(", ")}</p>
+      </section>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @page { size: A4; margin: 12mm 14mm; }
+  body { margin: 0; background: #e8e8e8; color: #111; font: 9.4pt/1.38 Inter, "Segoe UI", Arial, sans-serif; }
+  .sheet { width: 182mm; margin: 0 auto; padding: 10mm 0; background: #fff; }
+  @media screen { .sheet { padding: 14mm; margin: 16px auto; width: 210mm; box-sizing: border-box; } }
+  @media print { body { background: #fff; } .sheet { padding: 0; width: auto; } }
+  h1 { margin: 0; font-size: 21pt; letter-spacing: -0.02em; }
+  .role { margin: 2px 0 0; font-size: 11pt; color: #333; }
+  .contact { margin: 3px 0 0; font-size: 8.6pt; color: #555; }
+  h2 { margin: 11px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #999; font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase; }
+  p { margin: 3px 0; }
+  .row { display: flex; justify-content: space-between; gap: 12px; }
+  .row span { color: #555; white-space: nowrap; }
+  .job { margin-bottom: 6px; break-inside: avoid; }
+  ul { margin: 3px 0 0; padding-left: 15px; }
+  li { margin: 1px 0; }
+  .skill { margin: 1px 0; }
+</style>

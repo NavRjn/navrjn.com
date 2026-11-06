@@ -1,22 +1,48 @@
 ---
 title: PINN research framework
-summary: A configurable experimentation framework for physics-informed neural networks, with reusable problem abstractions, CLI orchestration, and reproducible training workflows.
+summary: A modular CLI framework for training and visualizing physics-informed neural networks, with runtime-discovered problem plugins and reproducible YAML experiments. It supports my BSc thesis on conditioning latent manifolds.
 role: Author
 period: 2025 — Present
 type: SCIENTIFIC ML
-tags: [Python, PyTorch, Numerical methods]
-stack: [Python, PyTorch]
+tags: [Python, PyTorch, Reproducibility]
+stack: [Python, PyTorch, Typer, YAML, Docker, CI]
 featured: true
 order: 2
-draft: true
+draft: false
 links:
   repo: https://github.com/NavRjn/PINN-Thesis
 ---
 
-{/* TODO: write the case study, then set draft: false. */}
+import Figure from '../../components/Figure.astro';
 
 ## Problem
 
+Research code on PINNs tends to be one notebook per experiment, impossible to rerun a month later. I needed to compare many PDE problems and several conditioning mechanisms quickly, and to be sure every result could be reproduced exactly.
+
+## Research question
+
+Can a single PINN solve a whole family of under-determined nonlinear PDEs? The thesis compares **attention-based conditioning** against **vector-set representations** for conditioning the latent space manifold of one model, with Vision Transformers as a building block.
+
 ## Approach
 
-## Results
+- **Framework is stable, problems are plugins.** Each problem lives in its own folder with an `api.py`, `problem.py` and `config.yaml`, and is discovered at runtime rather than installed.
+- **The CLI is the single entry point.** `pinn train gray_scott.yaml`, `pinn viz gray_scott --last`, and `pinn add my_new_pde` to scaffold a new problem from a template.
+- **Everything is a YAML config.** An experiment is one file, so a result is a config plus a commit.
+- **Research to library.** The repo is packaged with automated tests, CI and Docker, to move from research code toward something others can run.
+
+## Architecture
+
+<Figure src="/diagrams/pinn-framework.svg" alt="Typer CLI, core engine and outputs, with YAML configs, runtime problem plugins and scaffolding templates" caption="The CLI drives a stable core engine. Problems and configs are the moving parts." />
+
+## Implemented problems
+
+- **1D Bratu**, u_xx + λ·e^u = 0, a standard PINN benchmark.
+- **2D Gray-Scott** reaction-diffusion, including latent-space interpolation videos.
+
+## Status
+
+The thesis is in progress (JKU Linz, expected early 2027), so I publish no benchmark numbers yet. They will go here once the comparison is finished.
+
+## What I'd do next
+
+Run the attention vs vector-set comparison across a wider family of PDEs and report accuracy against parameter count.

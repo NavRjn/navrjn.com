@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { profile, mailto } from "../../data/profile";
+
+export async function getStaticPaths() {
+  const all = (await getCollection("writing"))
+    .filter((p) => !p.data.draft)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  return all.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+const date = data.date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const url = new URL(Astro.url.pathname, Astro.site).href;
+
+const jsonLd = [
+  {
+    "@type": "BlogPosting",
+    headline: data.title,
+    description: data.summary,
+    datePublished: data.date.toISOString(),
+    author: { "@id": `${profile.site}/#person` },
+    mainEntityOfPage: url,
+    keywords: data.tags.join(", "),
+  },
+];
+---
+
+<Layout title={data.title} description={data.summary} type="article" markdown={`/writing/${post.id}.md`} jsonLd={jsonLd}>
+  <article class="page">
+    <a class="back" href="/writing">← All writing</a>
+    <p class="meta"><time datetime={data.date.toISOString()}>{date}</time> · {data.tags.join(" · ")}</p>
+    <h1>{data.title}</h1>
+    <p class="summary">{data.summary}</p>
+    <div class="body"><Content /></div>
+
+    <section class="cta">
+      <h2>Working on something similar?</h2>
+      <p>I'm available immediately for ML, computer-vision and software roles. Vienna or remote (EU).</p>
+      <a class="button" href={mailto}>Email me ↗</a>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .page { padding: 48px 0 0; max-width: 720px; }
+  .back { color: #888; font-size: 13px; }
+  .meta { margin: 32px 0 14px; color: #b4c9a9; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  h1 { margin: 0; font-size: clamp(30px, 5vw, 44px); font-weight: 600; line-height: 1.12; letter-spacing: -0.045em; }
+  .summary { margin: 18px 0 0; color: #b0b0b6; font-size: 17px; }
+  .body { margin-top: 40px; color: #c4c4c9; }
+  .body :global(h2) { margin: 40px 0 10px; color: #ededed; font-size: 22px; font-weight: 570; letter-spacing: -0.03em; }
+  .body :global(p), .body :global(li) { line-height: 1.75; }
+  .body :global(li) { margin: 6px 0; }
+  .body :global(a) { color: #d5e2cc; text-decoration: underline; text-underline-offset: 3px; }
+  .body :global(code) { padding: 1px 5px; border-radius: 3px; background: #1a1a1d; font-size: 0.9em; }
+  .cta { margin-top: 64px; padding: 32px; border: 1px solid #29292d; border-radius: 4px; background: #101012; }
+  .cta h2 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.04em; }
+  .cta p { margin: 0 0 20px; color: #a1a1a7; font-size: 14px; }
+  .button { display: inline-flex; min-height: 44px; align-items: center; padding: 10px 16px; border-radius: 3px; background: #e3e7df; color: #141515; font-size: 13px; font-weight: 550; }
+  .button:hover { background: #fff; color: #111; }
+</style>

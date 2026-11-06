@@ -1,31 +1,57 @@
 ---
-title: Autonomous perception & navigation
-summary: Led perception and navigation for a drone platform, combining classical computer vision, monocular depth, deep learning, sensor fusion, and recovery policies for GPS-denied operation.
-role: Perception & navigation lead
-period: 2021 — Present
+title: Autonomous indoor drone navigation
+summary: Owned the computer-vision navigation stack of an autonomous drone, combining classical CV, monocular depth models and IMU/fiducial fusion with recovery policies for GPS-denied flight on edge Android hardware.
+role: Founding engineer, perception & navigation
+period: 2021 — 2026
 type: ROBOTICS · EDGE ML
 tags: [Computer vision, Sensor fusion, Edge ML]
-stack: []
+stack: [Kotlin, Android Coroutines, DJI SDK, OpenCV, Python, C++, Depth Anything, MiDaS, ZoeDepth, Raspberry Pi, ESP32, Grafana, Prometheus, Loki, ClearML]
 featured: true
 order: 1
-draft: true
+draft: false
 metric:
-  value: "97%"
-  label: reported navigation robustness after recovery-policy improvements
+  value: "<30% → ~97%"
+  label: successful A→B autonomous indoor flights, in arbitrary indoor environments
 ---
 
-{/* TODO: set draft: false once filled in. Define the 97% (of what runs, on which test set) and add stack.
-    Skeleton: Problem → Constraints → Approach → Architecture → Results → What I'd do next.
-    Use <Figure>, <Video>, <Demo> from src/components (import them at the top of this body). */}
+import Figure from '../../components/Figure.astro';
 
 ## Problem
 
+Fly a consumer drone from point A to point B indoors, with no GPS, in rooms the system has never seen. Early versions succeeded in fewer than 30% of attempts. The failures were not one bug: drift, occlusion, lighting changes and intermittent hardware faults all produced different symptoms.
+
 ## Constraints
+
+- **Edge compute.** Inference and control run on an Android phone attached to the drone controller, through the DJI SDK. No ground station, no GPU server.
+- **Real time.** The control loop had to hold a stable 20 Hz while perception, telemetry and flight-state handling competed for the same cores.
+- **No GPS.** Position comes from vision, IMU and fiducial markers only.
+- **Safety.** A failure mid-flight has to degrade into a defined behavior, never into undefined state.
 
 ## Approach
 
+**Layered perception.** A lightweight classical layer (OpenCV plus IMU/Kalman filtering) keeps the system stable and fast. A deep-learning layer using pretrained monocular depth models (Depth Anything, MiDaS, ZoeDepth) assists where geometry is ambiguous. Depth models were benchmarked against each other under the real latency budget, not on accuracy alone.
+
+**Multimodal fusion and recovery.** Vision, IMU and fiducial measurements are fused into one state estimate. When one source degrades (drift, occlusion, intermittent visual loss), explicit recovery policies decide whether to re-localise, hover, retry or abort.
+
+**Structured concurrency.** Perception, telemetry, control and recovery run as children of one supervisor scope on Kotlin coroutines. Cancelling the supervisor cancels everything beneath it, which removed a class of lifecycle leaks, zombie states and cross-pipeline resource contention.
+
+**Observability first.** Grafana, Prometheus and Loki made intermittent failures diagnosable: each flight could be inspected as metrics and logs and reduced to a specific failure mechanism instead of a hunch.
+
 ## Architecture
+
+<Figure src="/diagrams/drone-orchestration.svg" alt="Supervisor coroutine scope with perception, telemetry, control and recovery children, shared state and observability" caption="Hierarchical coroutine orchestration. One supervisor owns the lifecycle of every pipeline." />
+
+<Figure src="/diagrams/drone-fusion.svg" alt="Camera, IMU and fiducial inputs through classical CV, depth model and Kalman filter into sensor fusion, then navigation and recovery" caption="Perception to recovery loop. Degraded inputs route to recovery instead of failing the flight." />
 
 ## Results
 
+- Successful A→B autonomous indoor flights rose from **under 30% to about 97%** in arbitrary indoor environments.
+- A **stable 20 Hz** control loop and inference on edge Android hardware.
+- Lifecycle leaks and zombie states eliminated, improving reliability in continuous operation.
+- Components integrated and maintained across Kotlin/Android, Python, C++, Raspberry Pi, ESP32 and the DJI SDK.
+
+The 97% figure comes from the startup's internal flight testing. The code is proprietary, so there is no public repository.
+
 ## What I'd do next
+
+Replace hand-tuned recovery thresholds with ones fitted on logged flights, and carry depth uncertainty into the state estimate instead of treating the depth output as a point value.

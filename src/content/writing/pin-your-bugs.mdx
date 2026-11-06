@@ -1,0 +1,30 @@
+---
+title: "Pin your bugs: strict xfail and contract tests for an LLM pipeline"
+summary: Two small testing ideas that keep an LLM-backed application honest, drawn from my entity-resolution project.
+date: 2026-11-02
+tags: [Testing, LLMs, Python, pytest]
+---
+
+LLM applications are awkward to test. The core component is non-deterministic and costs money to call, so tests either get skipped or hit the network and flake. In [entity-resolution](https://github.com/NavRjn/entity-resolution) I settled on a few habits that keep the suite fast, offline and trustworthy.
+
+## 1. The suite runs offline and free
+
+Tests run with sockets disabled (`pytest-socket`). If any test tries to reach a real model, it fails loudly. That gives two guarantees: nobody can accidentally spend money by running the tests, and the full check (pytest, frontend lint and build) finishes in about a minute, so people actually run it.
+
+The model call itself sits behind a narrow interface. Everything around it (parsing, schema validation, graph construction, the API) is deterministic and tested directly. Evaluation of the model's *quality* is a separate, deliberate step against ground truth, not something hidden in unit tests.
+
+## 2. Known bugs are pinned with strict xfail
+
+Every project has bugs it hasn't fixed yet. The usual choices are bad: skip the test and forget the bug, or leave it failing and train everyone to ignore red.
+
+`@pytest.mark.xfail(strict=True)` is the third option. The test documents the bug and asserts the *correct* behavior. While the bug exists, the test is expected to fail and the suite stays green. The moment the bug is fixed, even by accident, the test unexpectedly passes and `strict=True` turns that into a failure.
+
+That inverts the usual risk. A silent behavior change can't slip through, and the list of xfails is an honest, executable record of the known issues. When you fix one, you delete the marker, and the diff shows exactly what you fixed.
+
+## 3. Contract tests between frontend and API
+
+In a small full-stack app the most common break is boring: the frontend calls a route the API doesn't serve, or the shapes drifted. A contract test reads the frontend's `fetch()` calls and checks that each one matches a route the API actually exposes. It is a few dozen lines and catches a whole class of regressions before a browser is involved.
+
+## The point
+
+None of this is clever. It's about making the failure modes visible: network use, known bugs and interface drift each get a mechanism that makes them impossible to ignore. For a system with an unpredictable component in the middle, the deterministic parts have to be the ones you can trust completely.

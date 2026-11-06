@@ -1,0 +1,37 @@
+---
+title: From telemetry to failure mechanism
+summary: How Grafana, Prometheus and Loki turned "the drone sometimes does something weird" into specific, fixable causes.
+date: 2026-10-28
+tags: [Observability, Debugging, Robotics]
+---
+
+Intermittent failures are the ones that cost the most time. The drone drifts once in ten flights. The app stalls only on one phone. Nothing reproduces on the desk. Staring at the code doesn't help, because the code is not where the information is.
+
+## Start from a question, not a dashboard
+
+The temptation with observability is to log everything and hope the cause jumps out. It rarely does. What worked better was framing each failure as a question the data could answer:
+
+- Did perception degrade *before* the drift, or after?
+- Was the control loop late, or was it on time and wrong?
+- Did the failure correlate with temperature, battery level, or a specific device?
+
+A question tells you which signal to look at. Without one, a dashboard is decoration.
+
+## The stack and what each part is for
+
+- **Prometheus** for numbers over time: loop frequency, inference latency, queue depth, battery. These answer "when did it start going wrong".
+- **Loki** for events: state transitions, recovery decisions, errors. These answer "what did the system think was happening".
+- **Grafana** to put both on one timeline, so a latency spike and a recovery trigger can be read side by side.
+- **ClearML** for experiment tracking, so a model change could be tied to a behavior change.
+
+## Reduce observations to a mechanism
+
+The goal isn't a correlation, it's a mechanism: a sentence of the form "X happens, which causes Y, which produces the symptom Z". As a hypothetical example: "flights fail more often in dim rooms" is an observation. "Exposure time rises in dim rooms, motion blur breaks marker detection, and the fusion layer then trusts the drifting IMU for too long" is a mechanism, and it tells you what to fix.
+
+Once you have the mechanism, the fix is usually small and targeted. That matters: you change the one thing that is broken instead of rewriting the system, and you can show the change worked by watching the same signal.
+
+## Design the next system to avoid the failure
+
+The last step is the one people skip. When a failure mode is understood, encode it: a metric that would have caught it earlier, a recovery policy for it, a test for it. The system gets harder to break in that particular way for good.
+
+The same habit carries over to software without hardware: pick a signal, ask a question, find a mechanism, fix the cause, then make the failure impossible to miss next time.

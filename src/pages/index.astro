@@ -4,18 +4,22 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import portrait from "../assets/me-3.jpg";
+import { profile, mailto } from "../data/profile";
 
 const featured = (await getCollection("projects"))
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
 
-const mailto =
-  "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen%20Rajan";
+const posts = (await getCollection("writing"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
 <Layout
   title="Naveen Rajan"
-  description="Machine learning engineer in Vienna building computer vision and autonomous systems that work outside the lab. Open to full-time roles."
+  description="Machine learning engineer in Vienna building computer vision and autonomous systems that work outside the lab. Available immediately."
+  markdown="/index.md"
 >
   <section class="hero">
     <div class="hero-eyebrow">
@@ -35,9 +39,10 @@ const mailto =
         </h1>
 
         <p class="intro">
-          Since 2021 I've led perception and navigation for a drone platform:
-          classical vision, monocular depth, deep learning and sensor fusion
-          under real-time, GPS-denied constraints.
+          For five years I built perception and navigation for an autonomous
+          drone: classical vision, monocular depth, deep learning and sensor
+          fusion under real-time, GPS-denied constraints. Autonomous indoor
+          flight success went from under 30% to about 97%.
         </p>
 
         <p class="hero-secondary">
@@ -58,7 +63,7 @@ const mailto =
           </a>
           <a
             class="button-secondary"
-            href="https://www.linkedin.com/in/navrjn"
+            href={profile.links.linkedin}
             target="_blank"
             rel="noreferrer"
           >
@@ -70,7 +75,7 @@ const mailto =
           <span class="location-dot"></span>
           Vienna · on-site or remote (EU)
           <span class="meta-divider">·</span>
-          Open to full-time roles
+          Available immediately
         </div>
       </div>
 
@@ -149,39 +154,82 @@ const mailto =
     </div>
   </section>
 
+  {posts.length > 0 && (
+    <section class="content-section" id="writing">
+      <div class="section-heading">
+        <div>
+          <div class="section-label"><span>03</span>WRITING</div>
+          <h2 class="section-title">Engineering notes.</h2>
+        </div>
+        <a class="section-link" href="/writing">All writing <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="posts">
+        {posts.map((p) => (
+          <a href={`/writing/${p.id}`} class="post">
+            <h3>{p.data.title}</h3>
+            <p>{p.data.summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
   <section class="contact-section" id="contact">
     <div>
       <div class="section-label">
-        <span>03</span>
+        <span>04</span>
         GET IN TOUCH
       </div>
 
-      <h2>Hiring for CV or ML? Let's talk.</h2>
+      <h2>Hiring for ML, CV or software? Let's talk.</h2>
 
       <p>
-        I'm looking for a full-time role on a team building technically
-        ambitious products. The fastest way to reach me is
-        <a class="mail-inline" href={mailto}>hello@navrjn.com</a>.
+        I'm available immediately for full-time, working-student and
+        contract work. The fastest way to reach me is
+        <a class="mail-inline" href={mailto}>hello@navrjn.com</a>
+        <button type="button" class="copy" data-copy="hello@navrjn.com">copy</button>.
       </p>
     </div>
 
     <div class="contact-actions">
       <a href={mailto}>Email me ↗</a>
       <a
-        href="https://www.linkedin.com/in/navrjn"
+        href={profile.links.linkedin}
         target="_blank"
         rel="noreferrer"
       >
         LinkedIn ↗
       </a>
-      <a href="https://github.com/navrjn" target="_blank" rel="noreferrer">
+      <a href={profile.links.github} target="_blank" rel="noreferrer">
         GitHub ↗
       </a>
     </div>
   </section>
 </Layout>
 
+<script>
+  document.querySelectorAll<HTMLButtonElement>("button.copy").forEach((b) =>
+    b.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.copy ?? "");
+        b.textContent = "copied ✓";
+      } catch {
+        b.textContent = "select & copy";
+      }
+      setTimeout(() => (b.textContent = "copy"), 1800);
+    })
+  );
+</script>
+
 <style>
+  .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .post { padding: 22px; border: 1px solid #29292d; border-radius: 4px; background: #101012; transition: border-color 180ms ease; }
+  .post:hover { border-color: #515157; }
+  .post h3 { margin: 0 0 8px; font-size: 16px; font-weight: 570; line-height: 1.35; letter-spacing: -0.03em; color: #ededed; }
+  .post p { margin: 0; color: #a1a1a7; font-size: 13px; line-height: 1.7; }
+  .copy { margin-left: 6px; padding: 1px 8px; border: 1px solid #3a3a40; border-radius: 3px; background: none; color: #a1a1a7; font: inherit; font-size: 12px; cursor: pointer; }
+  .copy:hover { border-color: #88888e; color: #fff; }
+  @media (max-width: 850px) { .posts { grid-template-columns: 1fr; } }
   .hero {
     padding-top: 36px;
   }

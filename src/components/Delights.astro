@@ -1,0 +1,95 @@
+<!--
+  Hello, view-source reader. Machine-readable version of this site:
+    /llms.txt   /llms-full.txt   /resume.json   /rss.xml   (every page also has a .md twin)
+  Press "?" on any page.
+-->
+<dialog id="keys" aria-label="Keyboard shortcuts">
+  <h2>Keyboard shortcuts</h2>
+  <dl>
+    <div><dt><kbd>g</kbd> <kbd>h</kbd></dt><dd>Home</dd></div>
+    <div><dt><kbd>g</kbd> <kbd>p</kbd></dt><dd>Work</dd></div>
+    <div><dt><kbd>g</kbd> <kbd>w</kbd></dt><dd>Writing</dd></div>
+    <div><dt><kbd>g</kbd> <kbd>a</kbd></dt><dd>About</dd></div>
+    <div><dt><kbd>g</kbd> <kbd>n</kbd></dt><dd>Now</dd></div>
+    <div><dt><kbd>g</kbd> <kbd>c</kbd></dt><dd>Résumé (PDF)</dd></div>
+    <div><dt><kbd>Esc</kbd></dt><dd>Close</dd></div>
+  </dl>
+  <p class="hint">There is one more. It involves a famous sequence of arrow keys.</p>
+</dialog>
+
+<aside id="hud" hidden aria-hidden="true">
+  <div>FLIGHT HUD <span>(esc)</span></div>
+  <div>loop <b id="hud-hz">20.0</b> Hz</div>
+  <div>tick <b id="hud-n">0</b></div>
+  <div>dt <b id="hud-dt">50.0</b> ms</div>
+  <div>GPS <b>denied ✓</b> · vision <b>ok</b></div>
+</aside>
+
+<script>
+  const routes: Record<string, string> = {
+    h: "/", p: "/projects", w: "/writing", a: "/about", n: "/now", c: "/cv.pdf",
+  };
+  const dialog = document.getElementById("keys") as HTMLDialogElement | null;
+  const hud = document.getElementById("hud") as HTMLElement | null;
+  const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  let konamiAt = 0;
+  let gPending = 0;
+  let timer: number | undefined;
+  let stop = false;
+
+  function runHud() {
+    if (!hud) return;
+    hud.hidden = false;
+    stop = false;
+    let n = 0, last = performance.now();
+    const hz = document.getElementById("hud-hz")!, cnt = document.getElementById("hud-n")!, dtEl = document.getElementById("hud-dt")!;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    timer = window.setInterval(() => {
+      if (stop) return;
+      const now = performance.now(), dt = now - last; last = now; n++;
+      if (reduce && n % 20) return; // update once per second if reduced motion
+      hz.textContent = (1000 / dt).toFixed(1);
+      cnt.textContent = String(n);
+      dtEl.textContent = dt.toFixed(1);
+    }, 50);
+  }
+  function closeHud() { stop = true; clearInterval(timer); if (hud) hud.hidden = true; }
+
+  addEventListener("keydown", (e) => {
+    const t = e.target as HTMLElement;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (/^(input|textarea|select)$/i.test(t.tagName) || t.isContentEditable) return;
+    if (e.key === "Escape") { closeHud(); dialog?.open && dialog.close(); return; }
+
+    // Konami
+    const want = konami[konamiAt];
+    if (e.key === want || e.key.toLowerCase() === want) {
+      if (++konamiAt === konami.length) { konamiAt = 0; hud?.hidden ? runHud() : closeHud(); }
+    } else konamiAt = e.key === konami[0] ? 1 : 0;
+
+    if (e.key === "?") { dialog?.open ? dialog.close() : dialog?.showModal(); return; }
+    if (e.key === "g") { gPending = Date.now(); return; }
+    if (gPending && Date.now() - gPending < 1200 && routes[e.key]) { gPending = 0; location.href = routes[e.key]; }
+  });
+  dialog?.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+
+  console.log(
+    "%c N R %c  Hi. You read the console, so you might like: curl https://navrjn.com/llms.txt  ·  press ? for shortcuts  ·  ↑↑↓↓←→←→BA",
+    "background:#b4c9a9;color:#111;font-weight:700;padding:2px 4px", "color:#b4c9a9"
+  );
+</script>
+
+<style>
+  dialog { border: 1px solid #3a3a40; border-radius: 6px; background: #121214; color: #e7e7e7; padding: 24px 28px; max-width: min(420px, calc(100% - 32px)); }
+  dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+  h2 { margin: 0 0 14px; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #b4c9a9; }
+  dl { margin: 0; display: grid; gap: 8px; }
+  dl > div { display: flex; justify-content: space-between; gap: 24px; font-size: 14px; }
+  dt { color: #9a9aa0; } dd { margin: 0; }
+  kbd { padding: 1px 6px; border: 1px solid #3a3a40; border-radius: 3px; background: #1a1a1d; font: 12px ui-monospace, monospace; }
+  .hint { margin: 16px 0 0; color: #77777e; font-size: 12px; }
+  #hud { position: fixed; right: 16px; bottom: 16px; z-index: 50; padding: 12px 14px; border: 1px solid #b4c9a9; border-radius: 4px; background: rgba(11, 11, 12, 0.92); color: #b4c9a9; font: 12px/1.6 ui-monospace, SFMono-Regular, monospace; pointer-events: none; }
+  #hud b { color: #e7e7e7; font-weight: 500; font-variant-numeric: tabular-nums; }
+  #hud span { color: #77777e; }
+  #hud[hidden] { display: none; }
+</style>

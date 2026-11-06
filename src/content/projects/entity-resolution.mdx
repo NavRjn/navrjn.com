@@ -1,22 +1,55 @@
 ---
-title: Entity resolution
-summary: An AI-assisted document processing project exploring entity extraction, normalization, evaluation, and reviewable structured outputs.
+title: LLM-aided entity resolution for legal documents
+summary: Upload a legal or insurance document, get back a knowledge graph of the people, companies, agreements and assets it mentions, with typed relationships, provenance and a reviewable UI.
 role: Author
-period: Software project
+period: 2025 — Present
 type: APPLIED AI
-tags: [Information extraction, Evaluation]
-stack: []
+tags: [LLMs, Knowledge graphs, Evaluation]
+stack: [Python, FastAPI, Pydantic, Docling, OpenAI API, Langfuse, React, Vite, pytest, uv]
 featured: true
 order: 3
-draft: true
+draft: false
+metric:
+  value: "0.71 F1"
+  label: knowledge-graph generation, work in progress
 links:
   repo: https://github.com/NavRjn/entity-resolution
 ---
 
-{/* TODO: write the case study, then set draft: false. */}
+import Figure from '../../components/Figure.astro';
 
 ## Problem
 
+Legal and insurance documents bury the structure that matters (who controls what, who is party to which agreement) in prose. Extracting it with an LLM is easy to demo and hard to trust: outputs vary, entities duplicate under different names, and nobody can check a claim against the source.
+
+## Constraints
+
+- **Traceability.** A reviewer must be able to see where every node and edge came from.
+- **Strict structure.** Output has to conform to a schema, or the downstream graph is meaningless.
+- **Testable without a bill.** The test suite must run offline and free, otherwise nobody runs it.
+
 ## Approach
 
+1. **Parse.** Docling parses and chunks the document.
+2. **Extract.** A model (currently `gpt-4o`) fills a strict Pydantic ontology via docling-graph: Person, Company, Agreement, Asset and OtherEntity, joined by `controls`, `participates_in`, `represents`, `transfers_to`, `governs` and `related_to`.
+3. **Resolve.** Extracted mentions are normalised and merged into entities, with probabilistic matching deciding when two mentions are the same thing.
+4. **Serve.** An adapter converts the node and edge CSVs into JSON that a FastAPI app serves to a React graph UI. Langfuse traces the LLM calls.
+
+**Evaluation is the product.** A ground-truth pipeline scores entity-level and relation-level metrics and runs error analysis, so extraction failures are found systematically. Known bugs are pinned as `xfail(strict=True)`: the suite turns red when one gets fixed by accident, so nothing changes silently. A contract test checks that every `fetch()` in the frontend matches a route the API really serves.
+
+## Architecture
+
+<Figure src="/diagrams/entity-resolution.svg" alt="Upload, Docling, LLM extraction into a Pydantic ontology, graph CSVs, adapter, FastAPI, React UI" caption="Upload to graph. Each run is a self-contained folder, outputs/<run_id>/." />
+
 ## Results
+
+- **0.71 F1** on knowledge-graph generation against ground truth. This is a work-in-progress number and I expect it to move.
+- A fully offline test suite (pytest with sockets disabled) plus frontend lint and build, run in about a minute with `check.py`.
+
+## Honest limits
+
+The public repo is a working prototype, not a product. Runs are stored as files rather than in a database, the UI exposes `.txt` upload only, citation offsets are placeholders, the model is hard-coded, and the API is dev-only with no auth. The README says so on purpose.
+
+## What I'd do next
+
+Real citation spans so every edge links to a source sentence, a database-backed store, a local-model option through Ollama, and an F1 breakdown per relation type to see where the missing 0.29 is lost.

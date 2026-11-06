@@ -1,82 +1,58 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { profile, mailto } from "../data/profile";
 ---
 
 <Layout
   title="Now"
-  description="What I'm currently working on, learning, and thinking about."
+  description="What Naveen Rajan is working on right now: looking for an ML or software role in Vienna, finishing a PINN thesis at JKU, building entity resolution."
 >
   <div class="page">
     <p class="eyebrow">NOW</p>
-
     <h1>What I'm up to.</h1>
+    <p class="updated">Last updated November 2026.</p>
 
-    <p class="updated">Last updated September 2026.</p>
+    <section>
+      <h2>Looking</h2>
+      <p>
+        {profile.availability}. I've left my drone startup and I'm looking for my next role:
+        {profile.lookingFor} The fastest way to reach me is
+        <a href={mailto}>{profile.email}</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Researching</h2>
+      <p>
+        My BSc thesis at JKU Linz on physics-informed neural networks: can one model, conditioned
+        through attention or vector sets, solve a whole family of under-determined PDEs? See the
+        <a href="/projects/pinn-framework">PINN framework</a>.
+      </p>
+    </section>
 
     <section>
       <h2>Building</h2>
       <p>
-        Currently working on projects around AI and software.
+        <a href="/projects/entity-resolution">Entity resolution</a>: turning legal documents into
+        reviewable knowledge graphs, and getting its F1 up from 0.71.
       </p>
     </section>
 
     <section>
-      <h2>Learning</h2>
-      <p>
-        Studying modern AI systems, engineering, and the ideas
-        surrounding them.
-      </p>
-    </section>
-
-    <section>
-      <h2>Exploring</h2>
-      <p>
-        Looking for interesting problems where technology can create
-        genuinely new possibilities.
-      </p>
+      <h2>Writing</h2>
+      <p>Engineering notes on real-time systems and testing, in <a href="/writing">Writing</a>.</p>
     </section>
   </div>
 </Layout>
 
 <style>
-  .page {
-    padding: 90px 0;
-    max-width: 700px;
-  }
-
-  .eyebrow {
-    color: #666;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-  }
-
-  h1 {
-    font-size: clamp(42px, 7vw, 68px);
-    line-height: 1;
-    letter-spacing: -0.05em;
-    margin: 20px 0;
-  }
-
-  .updated {
-    color: #555;
-    font-size: 13px;
-    margin-bottom: 70px;
-  }
-
-  section {
-    border-top: 1px solid #222;
-    padding: 30px 0;
-  }
-
-  h2 {
-    font-size: 18px;
-    margin: 0 0 8px;
-  }
-
-  section p {
-    color: #777;
-    margin: 0;
-    font-size: 16px;
-  }
+  .page { padding: 64px 0 0; max-width: 700px; }
+  .eyebrow { margin: 0 0 16px; color: #b4c9a9; font-size: 12px; font-weight: 600; letter-spacing: 0.13em; }
+  h1 { margin: 0; font-size: clamp(34px, 5vw, 52px); font-weight: 600; line-height: 1.1; letter-spacing: -0.05em; }
+  .updated { margin: 14px 0 40px; color: #77777e; font-size: 13px; }
+  section { padding: 24px 0; border-top: 1px solid #29292d; }
+  h2 { margin: 0 0 8px; font-size: 18px; font-weight: 560; }
+  section p { margin: 0; color: #a1a1a7; }
+  section a { color: #d5e2cc; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 600px) { .page { padding-top: 40px; } }
 </style>

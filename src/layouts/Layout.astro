@@ -1,34 +1,50 @@
 ---
+import { profile, mailto } from "../data/profile";
+import Delights from "../components/Delights.astro";
+
 interface Props {
   title?: string;
   description?: string;
   image?: string; // absolute path under /public, e.g. "/og.jpg"
+  type?: "website" | "article";
+  noindex?: boolean;
+  markdown?: string; // path of the markdown twin of this page
+  jsonLd?: Record<string, unknown>[];
 }
 
-const siteName = "Naveen Rajan";
+const siteName = profile.name;
 const {
   title = siteName,
-  description = "Machine learning engineer in Vienna building computer vision and autonomous systems that work outside the lab. Open to full-time roles.",
+  description = "Machine learning engineer in Vienna building computer vision and autonomous systems that work outside the lab. Available immediately.",
   image = "/og.jpg",
+  type = "website",
+  noindex = false,
+  markdown,
+  jsonLd = [],
 } = Astro.props;
 
-const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
+const fullTitle = title === siteName ? `${siteName} — ${profile.title}, Vienna` : `${title} — ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: siteName,
-  jobTitle: "Machine Learning Engineer",
-  url: "https://navrjn.com",
-  email: "mailto:hello@navrjn.com",
+  "@id": `${profile.site}/#person`,
+  name: profile.name,
+  alternateName: profile.aliases,
+  jobTitle: profile.title,
+  description: profile.summary,
+  url: profile.site,
+  email: `mailto:${profile.email}`,
   image: new URL("/og.jpg", Astro.site).href,
+  homeLocation: { "@type": "Place", name: "Vienna, Austria" },
   address: { "@type": "PostalAddress", addressLocality: "Vienna", addressCountry: "AT" },
-  sameAs: ["https://github.com/navrjn", "https://www.linkedin.com/in/navrjn"],
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Johannes Kepler University Linz" },
+  knowsAbout: profile.knowsAbout,
+  knowsLanguage: ["en", "de"],
+  sameAs: [profile.links.github, profile.links.linkedin],
 };
-
-const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen%20Rajan";
 ---
 
 <!doctype html>
@@ -36,16 +52,24 @@ const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0c" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="author" content={profile.name} />
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
     <link rel="icon" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Writing — Naveen Rajan" href="/rss.xml" />
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    {markdown && <link rel="alternate" type="text/markdown" href={markdown} />}
 
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -54,6 +78,7 @@ const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {jsonLd.map((j) => <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", ...j })} />)}
 
     <slot name="head" />
   </head>
@@ -64,8 +89,9 @@ const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen
 
       <nav aria-label="Primary">
         <a href="/projects">Work</a>
+        <a href="/writing">Writing</a>
         <a href="/about">About</a>
-        <a href="/cv.pdf" download="Naveen-Rajan-CV.pdf">Résumé</a>
+        <a class="nav-cv" href="/cv.pdf" download="Naveen-Rajan-CV.pdf">Résumé</a>
         <a class="nav-cta" href={mailto}>Contact</a>
       </nav>
     </header>
@@ -75,14 +101,15 @@ const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen
     </main>
 
     <footer>
-      <span>© {new Date().getFullYear()} Naveen Rajan · hello@navrjn.com</span>
+      <span>© {new Date().getFullYear()} {profile.name} · {profile.email} · <a href="/now">Now</a></span>
 
       <div>
-        <a href="https://github.com/navrjn">GitHub</a>
-        <a href="https://www.linkedin.com/in/navrjn">LinkedIn</a>
+        <a href={profile.links.github}>GitHub</a>
+        <a href={profile.links.linkedin}>LinkedIn</a>
         <a href={mailto}>Email</a>
       </div>
     </footer>
+    <Delights />
   </body>
 </html>
 
@@ -194,6 +221,10 @@ const mailto = "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen
     nav {
       gap: 12px;
       font-size: 13px;
+    }
+
+    nav .nav-cv {
+      display: none;
     }
 
     footer {

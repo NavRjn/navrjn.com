@@ -18,10 +18,14 @@ Other commands (via `npm run`): `build` (output to `dist/`), `preview` (serve th
 
 ## Architecture
 
-- `src/pages/*.astro`: file-based routes (`index`, `about`, `now`, `projects`, `writing`, `404`, `not-yet`). Each page wraps its content in `src/layouts/Layout.astro` and passes `title` / `description` props; styles are scoped per page.
-- `src/layouts/Layout.astro`: owns `<head>` metadata (title is rendered as `"<title> — Naveen Rajan"`), the site header/nav, and exposes a `head` slot for per-page additions.
-- `src/middleware.ts`: **gates unfinished sections.** Any path in `UNFINISHED_PATHS` (currently `/writing`, `/now`, `/projects`, `/about`, including subpaths) is 302-redirected to `/not-yet?from=<path>`. The pages exist but are unreachable until their entry is removed from that list, so when working on one of them, remove it from `UNFINISHED_PATHS` to see it in dev.
-- `public/_headers` sets security headers (nosniff, frame deny, referrer/permissions policy) for the host; `astro.config.mjs` sets `site: "https://navrjn.com"` and enables the sitemap.
+- `src/data/profile.ts`: **single source of truth** for facts about me (summary, experience, education, skills, press, availability). About, `/cv`, JSON-LD, `llms.txt`, `resume.json` and the footer all read from it. Edit facts there, not in pages.
+- `src/pages/*.astro`: file-based routes (`index`, `about`, `now`, `cv`, `projects/`, `writing/`, `404`, `not-yet`). Each page wraps its content in `src/layouts/Layout.astro` and passes `title` / `description` (plus optional `type`, `noindex`, `markdown`, `jsonLd`).
+- `src/layouts/Layout.astro`: owns `<head>` (canonical, Open Graph, Twitter, Person JSON-LD, RSS/markdown alternates), the header/nav, the footer, and mounts `components/Delights.astro` (console greeting, `?` shortcuts dialog, `g`+key navigation, Konami "flight HUD").
+- Content collections (`src/content.config.ts`): `projects` (`src/content/projects/*.mdx`, case studies with SVG diagrams in `public/diagrams/`) and `writing` (`src/content/writing/*.mdx`). `draft: true` entries are not built.
+- Agent/LLM layer: `llms.txt`, `llms-full.txt`, `resume.json`, `rss.xml`, `index.md`, `about.md`, and `.md` twins of every project and post. Shared helpers in `src/lib/md.ts`. `public/robots.txt` explicitly allows AI crawlers.
+- `src/middleware.ts`: gates unfinished sections. `UNFINISHED_PATHS` is currently empty; add a path to 302-redirect it to `/not-yet?from=<path>`.
+- `public/cv.pdf` is generated from `/cv` with `npm run build && npm run cv:pdf` (headless Edge/Chrome). Regenerate it after changing `profile.ts`.
+- `public/_headers` sets security headers; `astro.config.mjs` sets `site: "https://navrjn.com"`, MDX and the sitemap (excluding `/not-yet` and `/404`).
 
 ## Documentation
 

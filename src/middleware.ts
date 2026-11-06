@@ -1,7 +1,7 @@
 import { defineMiddleware } from 'astro:middleware';
 
 // Add any page or route prefix you want to temporarily hold back
-const UNFINISHED_PATHS = ['/writing', '/now'];
+const UNFINISHED_PATHS: string[] = [];
 
 export const onRequest = defineMiddleware((context, next) => {
   const { pathname } = context.url;

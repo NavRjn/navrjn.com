@@ -1,53 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const mailto =
-  "mailto:hello@navrjn.com?subject=Opportunity%20%E2%80%94%20Naveen%20Rajan";
-
-// TODO: add employer titles, degree + institution + dates here. Only add facts that are true.
-const experience = [
-  {
-    period: "2021 — Present",
-    title: "Perception & navigation lead",
-    org: "Flying4Home / ClearBee",
-    summary:
-      "Led perception and navigation for a drone platform: classical computer vision, monocular depth, deep learning, sensor fusion, and recovery policies for GPS-denied operation.",
-  },
-  {
-    period: "2025 — Present",
-    title: "Scientific ML research",
-    org: "Independent",
-    summary:
-      "Building a reproducible experimentation framework for physics-informed neural networks, studying latent-space manifolds to cover families of under-determined industrial simulations with a single model.",
-  },
-];
-
-const skills = [
-  { group: "ML & vision", items: "Computer vision, monocular depth, deep learning, PINNs, information extraction" },
-  { group: "Robotics & edge", items: "Sensor fusion, recovery policies, real-time software, constrained hardware" },
-  { group: "Languages & tools", items: "Python, PyTorch, CLI tooling, reproducible training workflows" },
-];
+import { profile, mailto } from "../data/profile";
 ---
 
 <Layout
   title="About"
-  description="Naveen Rajan is a machine learning engineer in Vienna with experience in computer vision, autonomous drone navigation and scientific ML."
+  description="Naveen Rajan is a machine learning engineer in Vienna: computer vision, autonomous drone navigation, LLM document intelligence and physics-informed ML. BSc AI at JKU Linz. Available immediately."
+  markdown="/about.md"
 >
   <div class="page">
     <p class="eyebrow">ABOUT</p>
     <h1>ML engineer. Vienna.</h1>
 
-    <p class="lead">
-      I build computer vision and ML systems that have to work on real hardware
-      under real constraints. Most of my time goes into perception and
-      navigation for drones; alongside that I work on applied LLM tooling and
-      physics-informed neural networks.
-    </p>
+    <p class="lead">{profile.summary}</p>
+    <p class="status"><span class="dot"></span>{profile.availability}. {profile.lookingFor}</p>
 
     <section>
       <h2>Experience</h2>
       <ol class="timeline">
-        {experience.map((e) => (
+        {profile.experience.map((e) => (
+          <li>
+            <span class="period">{e.period}</span>
+            <div>
+              <h3>{e.title} <span class="org">· {e.org}</span></h3>
+              <p>{e.summary}</p>
+              {e.steps.length > 0 && (
+                <ul class="steps">
+                  {e.steps.map((st) => <li><b>{st.period}</b> {st.text}</li>)}
+                </ul>
+              )}
+              {e.bullets.length > 0 && (
+                <p class="sub">Selected impact</p>
+                <ul class="bullets">{e.bullets.map((b) => <li>{b}</li>)}</ul>
+              )}
+            </div>
+          </li>
+        ))}
+        {profile.education.map((e) => (
           <li>
             <span class="period">{e.period}</span>
             <div>
@@ -57,34 +46,53 @@ const skills = [
           </li>
         ))}
       </ol>
+      <p class="more">See the <a href="/projects">projects</a> for architecture and results, or the <a href="/cv.pdf" download="Naveen-Rajan-CV.pdf">résumé (PDF)</a>.</p>
+    </section>
+
+    <section>
+      <h2>How I work</h2>
+      <p>{profile.workingStyle}</p>
     </section>
 
     <section>
       <h2>Skills</h2>
       <dl class="skills">
-        {skills.map((s) => (
+        {profile.skills.map((s) => (
           <div>
             <dt>{s.group}</dt>
-            <dd>{s.items}</dd>
+            <dd>{s.items.join(", ")}</dd>
           </div>
         ))}
+        <div>
+          <dt>Languages (spoken)</dt>
+          <dd>{profile.languages.map((l) => `${l.name} (${l.level})`).join(", ")}</dd>
+        </div>
       </dl>
+    </section>
+
+    <section>
+      <h2>Recognition & press</h2>
+      <ul class="press">
+        {profile.awards.map((a) => <li>{a}</li>)}
+        {profile.press.map((p) => (
+          <li><a href={p.url} target="_blank" rel="noreferrer">{p.outlet}: {p.title} ↗</a></li>
+        ))}
+      </ul>
     </section>
 
     <section>
       <h2>What I'm looking for</h2>
       <p>
-        A full-time ML or computer-vision engineering role on a team shipping
-        technically ambitious products, in Vienna or remote within the EU. I'm
-        also happy to talk about early-stage ideas.
+        {profile.lookingFor} I'm also glad to talk to founders and partners about early-stage
+        technical ideas.
       </p>
     </section>
 
     <section class="cta">
       <a class="button" href={mailto}>Email me ↗</a>
       <a href="/cv.pdf" download="Naveen-Rajan-CV.pdf">Résumé (PDF) ↓</a>
-      <a href="https://www.linkedin.com/in/navrjn" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      <a href="https://github.com/navrjn" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
     </section>
   </div>
 </Layout>
@@ -133,7 +141,7 @@ const skills = [
     padding: 0;
     list-style: none;
   }
-  .timeline li {
+  .timeline > li {
     display: grid;
     grid-template-columns: 140px 1fr;
     gap: 24px;
@@ -207,10 +215,21 @@ const skills = [
     .page {
       padding-top: 40px;
     }
-    .timeline li,
+    .timeline > li,
     .skills > div {
       grid-template-columns: 1fr;
       gap: 4px;
     }
   }
+
+  .status { display: flex; gap: 10px; align-items: baseline; margin: 18px 0 0; color: #a1a1a7; font-size: 14px; }
+  .dot { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: #b4c9a9; transform: translateY(-1px); }
+  .steps, .bullets { margin: 12px 0 0; padding-left: 18px; color: #a1a1a7; font-size: 14px; }
+  .steps li, .bullets li { margin: 6px 0; display: list-item; }
+  .steps b { color: #d8d8dc; font-weight: 550; font-variant-numeric: tabular-nums; }
+  .more, .press { color: #a1a1a7; font-size: 14px; }
+  .press { margin: 0; padding-left: 18px; }
+  section a:not(.button) { color: #d5e2cc; text-decoration: underline; text-underline-offset: 3px; }
+  .cta a:not(.button) { text-decoration: none; }
+  .sub { margin: 18px 0 0 !important; color: #77777e !important; font-size: 11px !important; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 </style>

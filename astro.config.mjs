@@ -8,9 +8,9 @@ export default defineConfig({
   site: "https://navrjn.com",
   integrations: [
     mdx(),
-    // Keep gated/placeholder pages out of the sitemap; remove entries as sections go live.
+    // Keep the placeholder and error pages out of the sitemap.
     sitemap({
-      filter: (page) => !/\/(writing|now|not-yet)\/?$/.test(page),
+      filter: (page) => !/\/(not-yet|404)\/?$/.test(page),
     }),
   ]
 });
